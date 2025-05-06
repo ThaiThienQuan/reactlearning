@@ -1,0 +1,11 @@
+.container{
+    background-color: lightgreen;
+    padding: 20px;
+    border: solid 2px chartreuse;
+    border-radius:5px;
+    color: white;
+
+}
+.title {
+    color: darkgreen;
+}
