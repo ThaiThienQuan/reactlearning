@@ -3,13 +3,15 @@ import {useState} from "react";
 export default function InputValidate() {
     const [user, setUser] = useState('')
     const [usererror, setUsererror] = useState('')
+
     const handleChange = (e) => {
         setUser(e.target.value);
 
     }
     const validate = () => {
+        
         let error = '';
-        if (!user){ error = 'Username is required';}
+        if (!user) error = 'Username is required';
         setUsererror(error);
         return !error;
     }
