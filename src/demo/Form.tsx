@@ -46,7 +46,7 @@ export default function Form() {
             onChange={handleChange}
           />
         </label>
-        <p>{formData.isSubcribed ? "true" : "false"}</p>
+        <p>{formData.isSubcribed ? true: false}</p>
         <br />
         <label>
           Gender:
