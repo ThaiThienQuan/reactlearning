@@ -8,7 +8,10 @@ import TodoList from "./demo/TodoList.tsx";
 import styles from "./demo/ModuleCSS.module.css";
 import Lifecycle from "./demo/Lifecycle.tsx";
 import Form from "./demo/Form.tsx";
+<<<<<<< HEAD
 import InputValidate from "./demo/InputValidate.tsx";
+=======
+>>>>>>> 15dbdf837685a8d0dd50d783d582f4a769856675
 function App() {
   const [count, usecount] = useState(0);
 
