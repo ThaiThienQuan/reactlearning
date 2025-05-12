@@ -4,9 +4,7 @@ export default function InputValidate() {
     const [user, setUser] = useState('')
     const [usererror, setUsererror] = useState('')
     const handleChange = (e) => {
-
         setUser(e.target.value);
-
     }
     const validate = () => {
         let error = '';

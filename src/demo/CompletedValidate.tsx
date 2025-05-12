@@ -10,21 +10,28 @@ export default function CompletedValidate() {
     usernameError: "",
     emailError: "",
   });
+  // bắt dữ lieeuj theo từng chữ đã nhập
   const handleChange = (e) => {
     const { name, type, value, checked } = e.target;
-    setformData((e) => ({
-      ...e,
-      [name]: type === "checbox" ? checked : value,
-    }));
+    const updatedata={
+    ...formData, [name]: type === "checbox" ? checked : value
+    }
+    // set data trực tiếp
+    // setformData((e) => ({
+    //   ...e,
+    //   [name]: type === "checbox" ? checked : value,
+    // }));
+    setformData(updatedata);
+validate(updatedata);
   };
 
-  const validate = () => {
+  const validate = (data=formData) => {
     let usernameError = "";
     let emailError = "";
-    if (!formData.username) {
+    if (!data.username) {
       usernameError = "Username is required";
     }
-    if (!formData.email.includes("@")) {
+    if (!data.email.includes("@")) {
       emailError = "Email is required";
     }
     setErrors({ usernameError, emailError });

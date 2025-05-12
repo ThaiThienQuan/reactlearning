@@ -28,7 +28,7 @@ function App() {
         <TodoList/>
         <Lifecycle/> */}
         <Form/>
-        <InputValidate/>
+        {/*<InputValidate/>*/}
         <CompletedValidate/>
     </>
   );
