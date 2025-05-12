@@ -6,47 +6,75 @@ export default function CompletedValidate() {
     email: "",
     checked: false,
   });
-  const [errors, seterrors] = useState({
+  const [errors, setErrors] = useState({
     usernameError: "",
     emailError: "",
   });
   const handleChange = (e) => {
-    const{name,type,value,checked}=e.target;
-    setformData((e)=>({...e,
-        [name]: type==='checbox'?checked:value,
+    const { name, type, value, checked } = e.target;
+    setformData((e) => ({
+      ...e,
+      [name]: type === "checbox" ? checked : value,
     }));
   };
+
   const validate = () => {
-    const error='';
-    return !error;
+    let usernameError = "";
+    let emailError = "";
+    if (!formData.username) {
+      usernameError = "Username is required";
+    }
+    if (!formData.email.includes("@")) {
+      emailError = "Email is required";
+    }
+    setErrors({ usernameError, emailError });
+    return !usernameError && !emailError;
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (validate()) alert(`username: ${formData.username} email:${formData.email} checked:${formData.checked?true:false}`);
+    if (validate())
+      alert(
+        `username: ${formData.username} email:${formData.email} checked:${
+          formData.checked ? true : false
+        }`
+      );
   };
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="username"
-          value={formData.username}
-          onChange={handleChange}
-        />
-        <input
-          type="text"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-        />
+        <label htmlFor="">
+          username
+          <input
+            type="text"
+            name="username"
+            value={formData.username}
+            onChange={handleChange}
+          />
+        </label>
+        {<p style={{color:'red'}}>{errors.usernameError}</p>}
+        <br />
+        <label htmlFor="">
+          email
+          <input
+            type="text"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+          />
+          {<p style={{color:'red'}}>{errors.emailError}</p>}
+        </label>
+        <br />
+        <label htmlFor="">
+          Remember ?
         <input
           type="checkbox"
           name="checked"
           checked={formData.checked}
           onChange={handleChange}
         />
-
-        <button type="submit"></button>
+</label>
+        <button type="submit">Submit</button>
       </form>
     </>
   );
