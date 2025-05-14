@@ -10,12 +10,14 @@ import Lifecycle from "./demo/Lifecycle.tsx";
 import Form from "./demo/Form.tsx";
 import InputValidate from "./demo/InputValidate.tsx";
 import CompletedValidate from "./demo/CompletedValidate.tsx";
+import FragmentTotur from "./demo/FragmentTotur.tsx";
 
 function App() {
   const [count, usecount] = useState(0);
 
   return (
     <>
+    <FragmentTotur/>
       <div className={styles.container}>
         <button onClick={()=>usecount(count+1)}>Increase count now is {count}</button>
         <button onClick={()=>usecount(count-1)}>Decrease count now is {count}</button>
