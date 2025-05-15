@@ -32,6 +32,7 @@ function App() {
         <Form/>
         {/*<InputValidate/>*/}
         <CompletedValidate/>
+        
     </>
   );
 }
