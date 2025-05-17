@@ -11,12 +11,15 @@ import Form from "./demo/Form.tsx";
 import InputValidate from "./demo/InputValidate.tsx";
 import CompletedValidate from "./demo/CompletedValidate.tsx";
 import FragmentTotur from "./demo/FragmentTotur.tsx";
+import MyContext from "./assets/MyContext.tsx";
+import DemoUseContext from "./demo/demoUseContext.tsx";
 
 function App() {
   const [count, usecount] = useState(0);
 
   return (
     <>
+    <MyContext.Provider value={'Hello from Context!'}>
     <FragmentTotur/>
       <div className={styles.container}>
         <button onClick={()=>usecount(count+1)}>Increase count now is {count}</button>
@@ -25,14 +28,15 @@ function App() {
         {/* <UserProfile email={"thaithienquan@gmail.com"} name={"Quan"} gender={true}></UserProfile>
         <HandlingEvent/>
         <ConditionRD/>
-      <Listrendering/>
+        <Listrendering/>
         <PlayerList/>
         <TodoList/>
         <Lifecycle/> */}
         <Form/>
         {/*<InputValidate/>*/}
         <CompletedValidate/>
-        
+        <DemoUseContext/>
+        </MyContext.Provider> 
     </>
   );
 }
