@@ -4,7 +4,7 @@ import MyContext from "../assets/MyContext";
 
 export default function demoUseContext() {
   const valueContext = useContext(MyContext);
-  return (
+    return (
     <>
       <div>
         <h1>Functional Component</h1>
