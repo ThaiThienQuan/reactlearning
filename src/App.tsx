@@ -21,7 +21,7 @@ function App() {
   return (
     <>
       <DemoReactRouter/>
-    <MyContext.Provider value={'Hello from Context!'}>
+
     <FragmentTotur/>
       <div className={styles.container}>
         <button onClick={()=>usecount(count+1)}>Increase count now is {count}</button>
@@ -37,8 +37,9 @@ function App() {
         <Form/>
         {/*<InputValidate/>*/}
         <CompletedValidate/>
+      <MyProvider>
         <DemoUseContext/>
-        </MyContext.Provider> 
+        </MyProvider>
     </>
   );
 }
