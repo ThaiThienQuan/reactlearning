@@ -1,12 +1,12 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { useContext } from "react";
+import {useContext, useState} from "react";
 import MyContext from "../assets/MyContext";
 
 export default function demoUseContext() {
-  const {value, setvalue} = useContext(MyContext);
+    const {value, setValue} = useContext(MyContext);
   // const valueContext=useContext(MyContext);
 const updateContext=()=>{
-  setvalue('Updated value from Functional Component');
+  setValue('Updated value from Functional Component');
 }
     return (
     <>

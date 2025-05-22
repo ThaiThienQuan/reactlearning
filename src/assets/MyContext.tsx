@@ -1,7 +1,7 @@
 import React, {useState} from "react";
-import MyContext from "./MyContext.tsx";
 
-const Myreact = React.createContext();
+
+const MyContext = React.createContext();
 export const MyProvider = ({children}) => {
     const [value, setValue] = useState('Initial Context value')
     return (
@@ -9,4 +9,4 @@ export const MyProvider = ({children}) => {
             {children}
         </MyContext.Provider>)
 }
-export default Myreact;
+export default MyContext;

@@ -11,7 +11,7 @@ import Form from "./demo/Form.tsx";
 import InputValidate from "./demo/InputValidate.tsx";
 import CompletedValidate from "./demo/CompletedValidate.tsx";
 import FragmentTotur from "./demo/FragmentTotur.tsx";
-import MyContext from "./assets/MyContext.tsx";
+import {MyProvider} from "./assets/MyContext.tsx";
 import DemoUseContext from "./demo/demoUseContext.tsx";
 import DemoReactRouter from "./demo/DemoReactRouter.tsx";
 
