@@ -14,6 +14,7 @@ import FragmentTotur from "./demo/FragmentTotur.tsx";
 import {MyProvider} from "./assets/MyContext.tsx";
 import DemoUseContext from "./demo/demoUseContext.tsx";
 import DemoReactRouter from "./demo/DemoReactRouter.tsx";
+import DemoUsecontext_NestCom from "./demo/DemoUsecontext_NestCom.tsx";
 
 function App() {
   const [count, usecount] = useState(0);
@@ -39,6 +40,7 @@ function App() {
         <CompletedValidate/>
       <MyProvider>
         <DemoUseContext/>
+        {/*<DemoUsecontext_NestCom/>*/}
         </MyProvider>
     </>
   );

@@ -4,7 +4,7 @@ import MyContext from "../assets/MyContext";
 
 export default function demoUseContext() {
     const {value, setValue} = useContext(MyContext);
-  // const valueContext=useContext(MyContext);
+
 const updateContext=()=>{
   setValue('Updated value from Functional Component');
 }
