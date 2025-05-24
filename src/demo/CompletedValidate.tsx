@@ -12,7 +12,7 @@ export default function CompletedValidate() {
     });
     // bắt dữ lieeuj theo từng chữ đã nhập
     const handleChange = (e) => {
-        
+
         const {name, type, value, checked} = e.target;
         const updatedata = {
             ...formData, [name]: type === "checbox" ? checked : value
@@ -50,8 +50,8 @@ export default function CompletedValidate() {
     };
     return (
         <>
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="">
+            <form className="center bg-success col-md-12 m-auto" onSubmit={handleSubmit}>
+                <label >
                     username
                     <input
                         type="text"
@@ -62,7 +62,7 @@ export default function CompletedValidate() {
                 </label>
                 {<p style={{color: 'red'}}>{errors.usernameError}</p>}
                 <br/>
-                <label htmlFor="">
+                <label >
                     email
                     <input
                         type="text"
@@ -73,7 +73,7 @@ export default function CompletedValidate() {
                     {<p style={{color: 'red'}}>{errors.emailError}</p>}
                 </label>
                 <br/>
-                <label htmlFor="">
+                <label >
                     Remember ?
                     <input
                         type="checkbox"

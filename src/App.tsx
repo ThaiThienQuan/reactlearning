@@ -1,4 +1,4 @@
-import { useState } from "react";
+import {useState} from "react";
 import UserProfile from "./demo/UserProfile.tsx";
 import HandlingEvent from "./demo/Handling-event.tsx";
 import ConditionRD from "./demo/ConditionRD.tsx";
@@ -17,33 +17,26 @@ import DemoReactRouter from "./demo/DemoReactRouter.tsx";
 import DemoUsecontext_NestCom from "./demo/DemoUsecontext_NestCom.tsx";
 
 function App() {
-  const [count, usecount] = useState(0);
 
-  return (
-    <>
-      <DemoReactRouter/>
-
-    <FragmentTotur/>
-      <div className={styles.container}>
-        <button onClick={()=>usecount(count+1)}>Increase count now is {count}</button>
-        <button onClick={()=>usecount(count-1)}>Decrease count now is {count}</button>
-      </div>
-        {/* <UserProfile email={"thaithienquan@gmail.com"} name={"Quan"} gender={true}></UserProfile>
+    return (
+        <>
+            {/*<DemoReactRouter/>*/}
+            {/*<FragmentTotur/>*/}
+            {/* <UserProfile email={"thaithienquan@gmail.com"} name={"Quan"} gender={true}></UserProfile>
         <HandlingEvent/>
         <ConditionRD/>
         <Listrendering/>
         <PlayerList/>
         <TodoList/>
         <Lifecycle/> */}
-        <Form/>
-        {/*<InputValidate/>*/}
-        <CompletedValidate/>
-      <MyProvider>
-        <DemoUseContext/>
-
-        </MyProvider>
-    </>
-  );
+            {/*<Form/>*/}
+            {/*<InputValidate/>*/}
+            <CompletedValidate/>
+            {/*<MyProvider>*/}
+            {/*  <DemoUseContext/>*/}
+            {/*  </MyProvider>*/}
+        </>
+    );
 }
 
 export default App;
