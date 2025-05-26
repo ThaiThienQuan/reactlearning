@@ -50,7 +50,7 @@ export default function CompletedValidate() {
     };
     return (
         <>
-            <form className="center bg-success col-md-12 m-auto" onSubmit={handleSubmit}>
+            <form className="center bg-success col-md-12 sticky-top mt-5  m-auto" onSubmit={handleSubmit}>
                 <label >
                     username
                     <input

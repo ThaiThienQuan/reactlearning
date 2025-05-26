@@ -1,4 +1,3 @@
-
 export default function Listrendering() {
     const names = ['quan', 'vinh', 'yen', 'thach'];
     return (<>
