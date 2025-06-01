@@ -4,7 +4,7 @@ export default function DataFetching() {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true)
     useEffect(() => {
-        fetch('https://jsonplaceholder.typicode.com/posts')
+        fetch('https://demodata-1-ef2d2-default-rtdb.asia-southeast1.firebasedatabase.app/')
             .then((response) => response.json())
             .then((data) => {
                 setData(data);
@@ -17,7 +17,7 @@ export default function DataFetching() {
             {loading ? <p>Loading ...</p>
                 : (
                     <ul>{data.slice(0.5).map((item) => (
-                        <li key={item.id}>{item.title}</li>
+                        <li key={item.name}> </li>
                     ))}
                     </ul>)}
         </div>);
