@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import {useContext, useState} from "react";
+import {useContext} from "react";
 import MyContext from "../assets/MyContext";
 
 export default function demoUseContext() {

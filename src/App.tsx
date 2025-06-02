@@ -15,6 +15,8 @@ import {MyProvider} from "./assets/MyContext.tsx";
 import DemoUseContext from "./demo/demoUseContext.tsx";
 import DemoReactRouter from "./demo/DemoReactRouter.tsx";
 import DemoUsecontext_NestCom from "./demo/DemoUsecontext_NestCom.tsx";
+import DemoUseEffect from "./demo/DemoUseEffect.tsx";
+import ThemeComponent from "./assets/ThemeComponent.tsx";
 
 function App() {
 
@@ -35,7 +37,7 @@ function App() {
             {/*<MyProvider>*/}
             {/*  <DemoUseContext/>*/}
             {/*  </MyProvider>*/}
-            <DemoUseEffect/>
+            <ThemeComponent/>
         </>
     );
 }

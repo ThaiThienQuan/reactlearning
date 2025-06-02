@@ -1,6 +1,4 @@
 import React, {useState} from "react";
-
-
 const MyContext = React.createContext();
 export const MyProvider = ({children}) => {
     const [value, setValue] = useState('Initial Context value')
