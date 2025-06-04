@@ -38,6 +38,7 @@ function App() {
             {/*<MyProvider>*/}
             {/*  <DemoUseContext/>*/}
             {/*  </MyProvider>*/}
+            <DemoUseEffect/>
             <ThemeProvider>
                 <ThemeComponent/>
             </ThemeProvider>
