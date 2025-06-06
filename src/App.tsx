@@ -18,6 +18,7 @@ import DemoUsecontext_NestCom from "./demo/DemoUsecontext_NestCom.tsx";
 import DemoUseEffect from "./demo/DemoUseEffect.tsx";
 import ThemeComponent from "./assets/ThemeComponent.tsx";
 import {ThemeProvider} from "./assets/ThemeContext.tsx";
+import LocalStorageComponent from "./assets/LocalStorageComponent.tsx";
 
 function App() {
 
@@ -42,6 +43,7 @@ function App() {
             <ThemeProvider>
                 <ThemeComponent/>
             </ThemeProvider>
+            <LocalStorageComponent/>
         </>
     );
 }

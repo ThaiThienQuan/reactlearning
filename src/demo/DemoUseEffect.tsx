@@ -13,7 +13,7 @@ export default function DemoUseEffect() {
                     id, ...value
                 })) : [];
                 setData(dataArray);
-                setLoadi*ng(false);
+                setLoading(false);
             })
             .catch((error) => {
                 console.error("Fetch error: ", error);
