@@ -11,6 +11,7 @@ export default function DemoUseState() {
     const AddEmployee = (e) => {
         e.preventDefault();
     }
+    const handleDeleteEmployee=(e)=>{}
     return (<>
         <form onSubmit={AddEmployee}>
             <input type="text" className={`form-control`} value={inputvalue.id}
@@ -41,8 +42,16 @@ export default function DemoUseState() {
         </form>
         <table className=" mt-3">
             <tr className="list-group mt-3">
-                {employees.map(employees, index)=>()}
-            </tr>
-        </table>
-    </>)
-}
+                {employees.map((employee, index) => (
+                    <td key={index}
+                        className="list-group-item d-flex justify-content-between align-items-center">
+                        {employee.id} - {employee.firstName} {employee.lastName} ({employee.email})
+                        <button className="btn btn-danger btn-sm"
+                                onClick={() => handleDeleteEmployee(index)}>Delete</button>
+                        <td>
+                            ))}
+                        </tr>
+                    </table>
+
+                    </>)
+                }
