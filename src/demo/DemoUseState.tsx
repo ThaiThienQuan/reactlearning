@@ -10,8 +10,14 @@ export default function DemoUseState() {
     })
     const AddEmployee = (e) => {
         e.preventDefault();
+if(inputvalue.id&&inputvalue.firstName&&inputvalue.lastName&&inputvalue.email)
+{setEmployees([...employees,inputvalue]);
+setInputvalue({id: '', firstName: '', lastName: '', email: ''})}
+else{ alert(`you miss some field`)}
     }
-    const handleDeleteEmployee=(e)=>{}
+    const handleDeleteEmployee = (index) => {
+        setEmployees(employees.filter((_, i) => i != index));
+    }
     return (<>
         <form onSubmit={AddEmployee}>
             <input type="text" className={`form-control`} value={inputvalue.id}
@@ -48,10 +54,10 @@ export default function DemoUseState() {
                         {employee.id} - {employee.firstName} {employee.lastName} ({employee.email})
                         <button className="btn btn-danger btn-sm"
                                 onClick={() => handleDeleteEmployee(index)}>Delete</button>
-                        <td>
-                            ))}
-                        </tr>
-                    </table>
+                    </td>
+                ))}
+            </tr>
+        </table>
 
-                    </>)
-                }
+    </>)
+}
