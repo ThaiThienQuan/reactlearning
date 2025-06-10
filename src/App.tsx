@@ -10,11 +10,6 @@ function App() {
     return (
         <>
             <DemoUseState/>
-            <CompletedValidate/>
-            <DemoUseEffect/>
-            <ThemeProvider>
-                <ThemeComponent/>
-            </ThemeProvider>
             <LocalStorageComponent/>
         </>
     );
