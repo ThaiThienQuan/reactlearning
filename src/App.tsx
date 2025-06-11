@@ -4,11 +4,13 @@ import ThemeComponent from "./assets/ThemeComponent.tsx";
 import {ThemeProvider} from "./assets/ThemeContext.tsx";
 import LocalStorageComponent from "./assets/LocalStorageComponent.tsx";
 import DemoUseState from "./demo/DemoUseState.tsx";
+import Timer from "./demo/Timer.tsx";
 
 function App() {
 
     return (
         <>
+            <Timer/>
             <DemoUseState/>
             <LocalStorageComponent/>
         </>

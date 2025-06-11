@@ -62,7 +62,7 @@ export default function DemoUseState() {
                                 onClick={() => handleDeleteEmployee(index)}>Delete</button>
                     </td>
                 ))}
-                <td></td>
+                <th>Next page</th>
             </tr>
         </table>
 
