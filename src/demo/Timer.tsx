@@ -6,10 +6,10 @@ export default function Timer() {
         const interval = setInterval(() => {
             setCount((prev) => prev + 1)
         }, 1000)
-        if (count==10)
+
         console.log(`Component did mount`)
         return () => {
-            clearInterval(interval)
+            setTimeout(()=>{ clearInterval(interval)},1000)
             console.log(`Component will unmount`)
         }
     }, [])

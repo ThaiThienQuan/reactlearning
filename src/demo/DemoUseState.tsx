@@ -2,12 +2,32 @@ import {useState} from "react";
 
 export default function DemoUseState() {
     const [employees, setEmployees] = useState([])
+    const [error, setError] = useState({
+        Errorid: '',
+        ErrorfirstName: '',
+        ErrorlastName: '',
+        Erroremail: ''
+    })
+    const [loading, setLoading] = useState(true)
     const [inputvalue, setInputvalue] = useState({
         id: '',
         firstName: '',
         lastName: '',
         email: ''
     })
+    const validate = (data = inputvalue) => {
+        let Errorid = '';
+        let ErrorfirstName = '';
+        let ErrorlastName = '';
+        let Erroremail = '';
+        if (!data.id) Errorid = 'Id is required';
+        if (!data.firstName) ErrorfirstName = 'firstName is required';
+        if (!data.lastName) ErrorlastName = 'lastName is required';
+        if (!data.email) Erroremail = 'email is required';
+        if (!data.email.includes('@')) Erroremail = 'email is not include @';
+        setError({Errorid, ErrorfirstName, ErrorlastName, Erroremail});
+        return !Errorid && !ErrorfirstName && !ErrorlastName && !Erroremail;
+    }
     const AddEmployee = (e) => {
         e.preventDefault();
         if (inputvalue.id && inputvalue.firstName && inputvalue.lastName && inputvalue.email) {
@@ -52,7 +72,7 @@ export default function DemoUseState() {
                 Add Employee
             </button>
         </form>
-        <table className="border mt-3"> <h3 style={{}}>Table of Employees</h3>
+        <table className="border mt-3"><h3 style={{}}>Table of Employees</h3>
             <tr className="list-group mt-3 p-0 ">
                 {employees.map((employee, index) => (
                     <td key={index}

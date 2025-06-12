@@ -26,13 +26,13 @@ export default function CompletedValidate() {
         validate(updatedata);
     };
 
-    const validate = (formData) => {
+    const validate = (form=formData) => {
         let usernameError = "";
         let emailError = "";
-        if (!formData.username) {
+        if (!form.username) {
             usernameError = "Username is required";
         }
-        if (!formData.email.includes("@")) {
+        if (!form.email.includes("@")) {
             emailError = "Email is required";
         }
         setErrors({usernameError, emailError});
