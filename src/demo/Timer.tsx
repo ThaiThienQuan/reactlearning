@@ -9,7 +9,6 @@ export default function Timer() {
 
         console.log(`Component did mount`)
         return () => {
-            setTimeout(()=>{ clearInterval(interval)},1000)
             console.log(`Component will unmount`)
         }
     }, [])

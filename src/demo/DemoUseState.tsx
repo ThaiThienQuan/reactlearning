@@ -1,13 +1,7 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 export default function DemoUseState() {
     const [employees, setEmployees] = useState([])
-    const [error, setError] = useState({
-        Errorid: '',
-        ErrorfirstName: '',
-        ErrorlastName: '',
-        Erroremail: ''
-    })
     const [loading, setLoading] = useState(true)
     const [inputvalue, setInputvalue] = useState({
         id: '',
@@ -15,19 +9,14 @@ export default function DemoUseState() {
         lastName: '',
         email: ''
     })
-    const validate = (data = inputvalue) => {
-        let Errorid = '';
-        let ErrorfirstName = '';
-        let ErrorlastName = '';
-        let Erroremail = '';
-        if (!data.id) Errorid = 'Id is required';
-        if (!data.firstName) ErrorfirstName = 'firstName is required';
-        if (!data.lastName) ErrorlastName = 'lastName is required';
-        if (!data.email) Erroremail = 'email is required';
-        if (!data.email.includes('@')) Erroremail = 'email is not include @';
-        setError({Errorid, ErrorfirstName, ErrorlastName, Erroremail});
-        return !Errorid && !ErrorfirstName && !ErrorlastName && !Erroremail;
-    }
+    useEffect(() => {
+        fetch('data.json')
+            .then(response => response.json())
+            .then((data) => {
+                setEmployees(data);
+                setLoading(false);
+            })
+    }, []);
     const AddEmployee = (e) => {
         e.preventDefault();
         if (inputvalue.id && inputvalue.firstName && inputvalue.lastName && inputvalue.email) {
@@ -48,25 +37,32 @@ export default function DemoUseState() {
                    onChange={(e) => setInputvalue({
                        ...inputvalue,
                        id: e.target.value
-                   })} placeholder={`ID`}/>
-            <input type="text" className={`form-control`}
+                   })}
+                   placeholder={`ID`}/>
+            <input type="text"
+                   className={`form-control  p-1 mr-1 mb-1 border rounded-1 border-success`}
                    value={inputvalue.firstName}
                    onChange={(e) => setInputvalue({
                        ...inputvalue,
                        firstName: e.target.value
-                   })} placeholder={`First Name`}/>
-            <input type="text" className={`form-control`}
+                   })}
+                   placeholder={`First Name`}/>
+            <input type="text"
+                   className={`form-control  p-1 mr-1 mb-1 border rounded-1 border-success`}
                    value={inputvalue.lastName}
                    onChange={(e) => setInputvalue({
                        ...inputvalue,
                        lastName: e.target.value
-                   })} placeholder={`Last name`}/>
-            <input type="text" className={`form-control`}
+                   })}
+                   placeholder={`Last name`}/>
+            <input type="text"
+                   className={`form-control  p-1 mr-1 mb-1 border rounded-1 border-success`}
                    value={inputvalue.email}
                    onChange={(e) => setInputvalue({
                        ...inputvalue,
                        email: e.target.value
-                   })} placeholder={`Email`}/>
+                   })}
+                   placeholder={`Email`}/>
             <button type="submit" style={{cursor: 'pointer'}}
                     className={`btn btn-primary px-20 py-10 rounded-1 text-light`}>
                 Add Employee

@@ -33,6 +33,8 @@ export default function CompletedValidate() {
             usernameError = "Username is required";
         }
         if (!form.email.includes("@")) {
+            emailError = "Email is include @";
+        }if (!form.email) {
             emailError = "Email is required";
         }
         setErrors({usernameError, emailError});
