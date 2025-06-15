@@ -30,6 +30,7 @@ export default function DemoUseState() {
         setEmployees(employees.filter((_, i) => i != index));
     }
     return (<>
+    
         <form className={`mb-1`} onSubmit={AddEmployee}>
             <input type="text"
                    className={`form-control p-1 mr-1 mb-1 border rounded-1 border-success`}
@@ -68,6 +69,8 @@ export default function DemoUseState() {
                 Add Employee
             </button>
         </form>
+        <h2>Employees List</h2>
+    {loading?(<p>Loading...</p>):
         <table className="border mt-3"><h3 style={{}}>Table of Employees</h3>
             <tr className="list-group mt-3 p-0 ">
                 {employees.map((employee, index) => (
@@ -80,7 +83,7 @@ export default function DemoUseState() {
                 ))}
                 <th>Next page</th>
             </tr>
-        </table>
+        </table>}
 
     </>)
 }
