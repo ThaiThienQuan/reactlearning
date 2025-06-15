@@ -10,7 +10,7 @@ export default function DemoUseState() {
         email: ''
     })
     useEffect(() => {
-        fetch('data.json')
+        fetch('https://jsonplaceholder.typicode.com/users')
             .then(response => response.json())
             .then((data) => {
                 setEmployees(data);
