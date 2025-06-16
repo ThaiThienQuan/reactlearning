@@ -14,6 +14,9 @@ function App() {
             <Timer/>
             <DemoUseState/>
             <LocalStorageComponent/>
+            <ThemeProvider>
+                <ThemeComponent/>
+            </ThemeProvider>
         </>
     );
 }
