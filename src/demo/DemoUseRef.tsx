@@ -6,10 +6,11 @@ export default function DemoUseRef() {
   const email = useRef(null);
   const Submit = (e) => {
     e.preventDefault();
-   alert(`First Name: ${firstName.current.value}\nLast Name: ${lastName.current.value}\nEmail: ${email.current.value}`);
- };
+    
+  };
   const focusFirstname = () => {
     firstName.current.focus();
+
   };
   return (
     <div className={`container`}>
@@ -41,7 +42,9 @@ export default function DemoUseRef() {
             className={`form-control`}
           />
         </div>
-        <button type="submit" className="btn btn-primary">Submit</button>
+        <button type="submit" className="btn btn-primary">
+          Submit
+        </button>
         <button
           type="button"
           className="btn btn-secondary"
