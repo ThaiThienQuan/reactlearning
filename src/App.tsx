@@ -6,6 +6,7 @@ import DemoUseState from "./demo/DemoUseState.tsx";
 import Timer from "./demo/Timer.tsx";
 import {ThemeProvider} from "./assets/ThemeContext.tsx";
 import DemoUseRef from "./demo/DemoUseRef.tsx";
+import DemoUseId from "./demo/DemoUseId.tsx";
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
            <ThemeProvider>
                <ThemeComponent/>
            </ThemeProvider>
+           <DemoUseId/>
         </>
     );
 }
