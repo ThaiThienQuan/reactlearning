@@ -1,4 +1,4 @@
-import { useId, useRef, useState } from "react";
+import { useId, useRef, useState , useEffect } from "react";
 
 export default function DemoUseId_useRef() {
   const firstName = useRef(null);
@@ -7,10 +7,16 @@ export default function DemoUseId_useRef() {
   const [data, setdata] = useState({
     firstName: "",
   });
+  useEffect(() => {
+    firstName.current.focus();
+    console.log(firstName.current);
+    
+  }, []);
+
   return (
     <>
       <div className="mb-3">
-        <label htmlFor="" className="form-label">
+        <label htmlFor={firstNameId} className="form-label">
           First Name
         </label>
         <input
@@ -20,11 +26,8 @@ export default function DemoUseId_useRef() {
           ref={firstName}
           className="form-control"
           placeholder=""
-          aria-describedby="helpId"
         />
-        <small id="helpId" className="text-muted">
-          Help text
-        </small>
+        <p>{data.firstName}</p>
       </div>
     </>
   );
