@@ -5,9 +5,8 @@ export default function DemoUseId_useRef() {
   const lastName = useRef(null);
   const email = useRef(null);
   const firstNameId = useId();
-  const emailId = useId();
   const lastNameId = useId();
-  const firstNameId = `${id}-firstName`;
+  const emailId = useId();
   const [data, setdata] = useState({
     firstName: "",
     lastName: "",
@@ -24,29 +23,69 @@ export default function DemoUseId_useRef() {
       [name]: value,
     }));
   };
-  const handleSubmit = (e) => {
+  const Submit = (e) => {
+    firstName.current.focus();
+    console.log();
+
     e.preventDefault();
-    alert(
-      `Thông tin đã gửi:\nTên đệm: ${data.firstName}\n Tên :${data.lastName}\nEmail: ${data.email}`
+    console.log(
+      `Thông tin đã gửi:\nTên đệm: ${data.firstName}, firstnameId: ${firstNameId} 
+      \n Tên :${data.lastName} , lastnameId: ${lastNameId}
+      \nEmail: ${data.email}, emailId: ${emailId}
+      `
     );
   };
 
   return (
     <>
-      <div className="mb-3">
-        <label htmlFor={firstNameId} className="form-label">
-          First Name
-        </label>
-        <input
-          type="text"
-          name="firstName"
-          value={data.firstName}
-          ref={firstName}
-          className="form-control"
-          placeholder=""
-        />
-        <p>{data.firstName}</p>
-      </div>
+      <form action="" onSubmit={Submit}>
+        <div className="mb-3">
+          <label htmlFor={firstNameId} className="form-label">
+            First Name
+          </label>
+          <input
+            type="text"
+            name="firstName"
+            value={data.firstName}
+            ref={firstName}
+            id={firstNameId}
+            className="form-control"
+            placeholder=""
+            onChange={handlechange}
+          />
+        </div>
+        <div className="mb-3">
+          <label htmlFor={lastNameId} className="form-label">
+            Last Name
+          </label>
+          <input
+            type="text"
+            name="lastName"
+            value={data.lastName}
+            ref={lastName}
+            id={lastNameId}
+            className="form-control"
+            placeholder=""
+            onChange={handlechange}
+          />
+        </div>
+        <div className="mb-3">
+          <label htmlFor={emailId} className="form-label">
+            Email
+          </label>
+          <input
+            type="text"
+            name="email"
+            value={data.email}
+            ref={email}
+            id={emailId}
+            className="form-control"
+            placeholder=""
+            onChange={handlechange}
+          />
+        </div>
+        <button type="submit">Submit</button>
+      </form>
     </>
   );
 }
