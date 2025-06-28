@@ -7,6 +7,8 @@ const reducer = (state, action) => {
       return { count: state.count + 1 };
     case "decrement":
       return { count: state.count - 1 };
+       case "times2":
+      return { count: state.count * 2 };
 
     default:
       return state;
@@ -20,6 +22,7 @@ export default function DemoUseReducer() {
       <p>Count: {state.count}</p>
       <button onClick={() => dispatch({ type: "increment" })}>Increase</button>
       <button onClick={() => dispatch({ type: "decrement" })}>Decrease</button>
+      <button onClick={() => dispatch({ type: "decrement" })}>Double</button>
     </>
   );
 }
