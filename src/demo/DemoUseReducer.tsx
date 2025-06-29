@@ -1,28 +1,63 @@
 import { useReducer } from "react";
-
-const initialState = { count: 0 };
-const reducer = (state, action) => {
-  switch (action.type) {
-    case "increment":
-      return { count: state.count + 1 };
-    case "decrement":
-      return { count: state.count - 1 };
-       case "times2":
-      return { count: state.count * 2 };
-
-    default:
-      return state;
-  }
-};
 export default function DemoUseReducer() {
-  const [state, dispatch] = useReducer(reducer,initialState);
+  const handleAddEmployee=()=>{
+    
+  }
+  const handleInputchange=()=>{
 
+  }
   return (
     <>
-      <p>Count: {state.count}</p>
-      <button onClick={() => dispatch({ type: "increment" })}>Increase</button>
-      <button onClick={() => dispatch({ type: "decrement" })}>Decrease</button>
-      <button onClick={() => dispatch({ type: "decrement" })}>Double</button>
+      <form onSubmit={handleAddEmployee}>
+        <div className={`form-group`}>
+          <label htmlFor="id">Id</label>
+          <input
+            type="text"
+            name="id"
+            id="id"
+            className={`form-control`}
+            value={state.inputValue.id}
+            onChange={handleInputchange}
+            placeholder="id"
+          />
+        </div>
+        <div className={`form-group`}>
+          <label htmlFor="firstName">First Name</label>
+          <input
+            type="text"
+            name="firstName"
+            id="firstName"
+            className={`form-control`}
+            value={state.inputValue.firstName}
+            onChange={handleInputchange}
+            placeholder="firstName"
+          />
+        </div>
+        <div className={`form-group`}>
+          <label htmlFor="lastName">Last Name</label>
+          <input
+            type="text"
+            name="lastName"
+            id="lastName"
+            className={`form-control`}
+            value={state.inputValue.lastName}
+            onChange={handleInputchange}
+            placeholder="lastName"
+          />
+        </div>
+        <div className={`form-group`}>
+          <label htmlFor="email">Email</label>
+          <input
+            type="text"
+            name="email"
+            id="email"
+            className={`form-control`}
+            value={state.inputValue.email}
+            onChange={handleInputchange}
+            placeholder="email"
+          />
+        </div>
+      </form>
     </>
   );
 }
