@@ -10,7 +10,7 @@ inputValues:{
 }
 const reducer=(state,action)=>{
   switch (action.type) {
-    case value:
+    case "value":
       
       break;
   
@@ -80,10 +80,10 @@ const [state, dispatch]=useReducer(reducer,initialState)
         </div>
       </form>
       <ul>
-        {state.employees
+        
         <li>
 
-        </li>}
+        </li>
       </ul>
     </>
   );
