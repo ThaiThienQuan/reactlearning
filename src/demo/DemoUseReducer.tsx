@@ -1,5 +1,26 @@
 import { useReducer } from "react";
+const initialState={
+employees:[],
+inputValues:{
+  id:'',
+  firstName:'',
+  lastName:'',
+  email:'',
+}
+}
+const reducer=(state,action)=>{
+  switch (action.type) {
+    case value:
+      
+      break;
+  
+    default:
+      break;
+  }
+}
 export default function DemoUseReducer() {
+const [state, dispatch]=useReducer(reducer,initialState)
+}
   const handleAddEmployee=()=>{
     
   }
@@ -58,6 +79,12 @@ export default function DemoUseReducer() {
           />
         </div>
       </form>
+      <ul>
+        {state.employees
+        <li>
+
+        </li>}
+      </ul>
     </>
   );
 }
