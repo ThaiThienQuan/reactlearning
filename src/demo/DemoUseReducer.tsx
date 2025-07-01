@@ -5,14 +5,28 @@ inputValues:{
   id:'',
   firstName:'',
   lastName:'',
-  email:'',
+  checked:false,
 }
 }
 const reducer=(state,action)=>{
   switch (action.type) {
-    case "value":
+    case 'addEmployee':
+      return { ...state,
+        employees:[...state.employees,action.payload],
+        inputValues:{id :'', 
+        firstName:'',
+        lastName:'',
+        checked:false,
+      }};
+    case 'deleteEmployee':
+     
+      return { ...state, 
+        employees:state.employees.filter((_,index)=>index !== action.index)};
+    case 'updateInput':
       
-      break;
+      return {...state,
+        inputValues:{...state.inputValues,[action.field]:[action.typet]?'checked':[action.value]}
+      };
   
     default:
       break;
@@ -67,15 +81,14 @@ const [state, dispatch]=useReducer(reducer,initialState)
           />
         </div>
         <div className={`form-group`}>
-          <label htmlFor="email">Email</label>
+          <label htmlFor="checked">Remember ? </label>
           <input
-            type="text"
-            name="email"
-            id="email"
+            type="checkbox"
+            name="checked"
+            id="checked"
             className={`form-control`}
-            value={state.inputValue.email}
+            checked={state.inputValue.checked}
             onChange={handleInputchange}
-            placeholder="email"
           />
         </div>
       </form>

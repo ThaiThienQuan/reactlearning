@@ -15,7 +15,7 @@ export default function CompletedValidate() {
 
         const {name, type, value, checked} = e.target;
         const updatedata = {
-            ...formData, [name]: type === "checbox" ? checked : value
+            ...formData, [name]: type === "checkbox" ? checked : value
         }
         // set data trực tiếp nếu truyền vào validate() => chạy được do validate không biết e là gì;
         // setformData((e) => ({
