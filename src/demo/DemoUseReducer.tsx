@@ -25,7 +25,7 @@ const reducer=(state,action)=>{
     case 'updateInput':
       
       return {...state,
-        inputValues:{...state.inputValues,[action.field]:[action.typet]?'checked':[action.value]}
+        inputValues:{...state.inputValues,[action.field]:[action.style]=='checkbox'?checked:[action.value]}
       };
   
     default:
