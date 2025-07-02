@@ -92,11 +92,17 @@ const [state, dispatch]=useReducer(reducer,initialState)
           />
         </div>
       </form>
-      <ul>
-        
-        <li>
-
+      <ul className="list-group mt-3">
+        {state.employees.map((employee,index)=>(
+          <li key={index} className="list-group-item d-flex justify-content-between align-items-center" >
+{employee.id}
+{employee.firstName}
+{employee.lastName}
+{employee.checked?'checked':'not check'}
+<button className="btn btn-danger" onClick={()=>dispatch({type:'deleteEmployee',index})}>Delete</button>
         </li>
+        ))
+        }
       </ul>
     </>
   );
