@@ -8,6 +8,7 @@ import {ThemeProvider} from "./assets/ThemeContext.tsx";
 import DemoUseRef from "./demo/DemoUseRef.tsx";
 import DemoUseId from "./demo/DemoUseId.tsx";
 import DemoUseId_useRef from "./demo/DemoUseId_useRef.tsx";
+import DemoUseReducer from "./demo/DemoUseReducer.tsx";
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
            </ThemeProvider>
            <DemoUseId/>
            <DemoUseId_useRef/>
+           <DemoUseReducer/>
         </>
     );
 }
