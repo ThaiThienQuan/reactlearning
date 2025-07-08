@@ -21,7 +21,7 @@ const reducer=(state,action)=>{
     case 'deleteEmployee':
      
       return { ...state, 
-        employees:state.employees.filter((_,index)=>index !== action.index)};
+        employees:state.employees.filter((_,i)=>i !== action.index)};
     case 'updateInput':
       
       return {...state,
