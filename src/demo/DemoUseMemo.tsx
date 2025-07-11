@@ -1,27 +1,45 @@
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 
-export default function DemoUseCallback() {
-  const [count, setCount] = useState(0);
-  const [text, setText] = useState("");
+const innitial = [
+  { id: "01`", name: "Vinh", gender: true, checked: true },
+  { id: "02", name: "Quân", gender: true, checked: false },
+  { id: "03", name: "Tiên", gender: false, checked: true },
+];
+export default function DemoUseMemo() {
+  const [employees, setemployees] = useState(innitial)
+  const [SearchTerm, setSearchTerm] = useState('');
 
-  const expensiveCalculation = (num) => {
-    console.log("Calculating...");
-    for (let i = 0; i < 1000000000; i++) { /* empty */ } // Simulate an expensive calculation
-    return num * 2;
-  };
-
-  const memoizedValue = useMemo(() => expensiveCalculation(count), [count]);
-
+  const handleChange=useCallback((e)=>{
+    setSearchTerm(e.target.value);
+  },[]);
+ 
+  const filterEmployee= useMemo(() => {
+    console.log(`filtering employees`);
+    
+    return employees.filter((employees)=>`
+  ${employees.id} - ${employees.name} - ${employees.gender?'Male':'Female'}- 
+  ${employees.checked?'remembered in 10s':'not remembered'}`
+  .toLowerCase()
+  .includes(SearchTerm.toLowerCase()););
+}, [employees, SearchTerm]) 
   return (
-    <div>
-      <p>Count: {count}</p>
-      <button onClick={() => setCount(count + 1)}>Increment</button>
-      <p>Expensive Calculation Result: {memoizedValue}</p>
-      <input
-        value={text}
-        onChange={(e) => setText(e.target.value)}
-        placeholder="Type something..."
-      />
-    </div>
+    <>
+      <div className="container mt-5">
+        <input
+          type="text"
+          value={SearchTerm}
+          onChange={handleChange}
+          placeholder="Search whaterver in list below"
+        />
+        <ul className="list-group">
+          {filterEmployee.map((employee) => (
+            <li key={employee.id}>
+              {employee.id} - {employee.name} {employee.gender?'Male':'Female'}{" "}
+              {employee.checked?'remembered in 10s':'not remembered'}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </>
   );
 }
