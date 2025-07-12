@@ -13,15 +13,14 @@ export default function DemoUseMemo() {
     setSearchTerm(e.target.value);
   },[]);
  
-  const filterEmployee= useMemo(() => {
+  const filterEmployee = useMemo(() => {
     console.log(`filtering employees`);
     
     return employees.filter((employees)=>`
   ${employees.id} - ${employees.name} - ${employees.gender?'Male':'Female'}- 
   ${employees.checked?'remembered in 10s':'not remembered'}`
   .toLowerCase()
-  .includes(SearchTerm.toLowerCase()););
-}, [employees, SearchTerm]) 
+  .includes(SearchTerm.toLowerCase()););}, [employees, SearchTerm]) 
   return (
     <>
       <div className="container mt-5">

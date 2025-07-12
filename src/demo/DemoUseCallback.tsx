@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 
 const innitial = [
   { id: "01`", name: "Vinh", gender: true, checked: true },
@@ -13,12 +13,14 @@ export default function DemoUseCallback() {
     setSearchTerm(e.target.value);
   },[]);
  
-  const filterEmployee=employees.filter((employees)=>`
-  ${employees.id} - ${employees.name} - ${employees.gender?'Male':'Female'}- 
-  ${employees.checked?'remembered in 10s':'not remembered'}`
-  .toLowerCase()
-  .includes(SearchTerm.toLowerCase())
-)
+  const filterEmployee = useMemo(() => {
+    console.log('Filtering employees');
+    return employees.filter((employee) =>
+      `${employee.firstName} ${employee.lastName} ${employee.email}`
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase())
+    );
+  }, [employees, searchTerm]);
   return (
     <>
       <div className="container mt-5">
