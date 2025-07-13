@@ -7,26 +7,25 @@ const innitial = [
 ];
 export default function DemoUseMemo() {
   const [employees, setemployees] = useState(innitial)
-  const [SearchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState('');
 
   const handleChange=useCallback((e)=>{
     setSearchTerm(e.target.value);
   },[]);
- 
-  const filterEmployee = useMemo(() => {
-    console.log(`filtering employees`);
-    
-    return employees.filter((employees)=>`
-  ${employees.id} - ${employees.name} - ${employees.gender?'Male':'Female'}- 
-  ${employees.checked?'remembered in 10s':'not remembered'}`
-  .toLowerCase()
-  .includes(SearchTerm.toLowerCase()););}, [employees, SearchTerm]) 
+ const filterEmployee=useMemo(() =>{
+  console.log('Filtering employees');
+   return employees.filter((emp)=> `
+    ${emp.id}
+    ${emp.name}
+    ${emp.gender?'Male':'Female'}
+    ${emp.checked?'Remembered in 10m':' not remember'}
+    `.toLowerCase().includes(searchTerm.toLowerCase()))}, [employees,searchTerm]);
   return (
     <>
       <div className="container mt-5">
         <input
           type="text"
-          value={SearchTerm}
+          value={searchTerm}
           onChange={handleChange}
           placeholder="Search whaterver in list below"
         />
