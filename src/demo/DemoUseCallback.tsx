@@ -10,6 +10,8 @@ export default function DemoUseCallback() {
   const [SearchTerm, setSearchTerm] = useState('');
 
   const handleChange=useCallback((e)=>{
+    
+    console.log(`have useCallback here with value:` + e.target.value);
     setSearchTerm(e.target.value);
   },[]);
  
@@ -17,7 +19,7 @@ export default function DemoUseCallback() {
     `${employee.firstName} ${employee.lastName} ${employee.email}`
       .toLowerCase()
       .includes(SearchTerm.toLowerCase())
-  );
+    );
   return (
     <>
       <div className="container mt-5">
