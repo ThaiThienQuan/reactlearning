@@ -35,7 +35,7 @@ const reducer = (state, action) => {
       return state;
   }
 };
-dlknwakd
+
 export default function DemoUseReducer() {
   const [state, dispatch] = useReducer(reducer, initialState);
   const handleAddEmployee = (e) => {
