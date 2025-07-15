@@ -1,58 +1,61 @@
 import { useReducer } from "react";
-const initialState={
-employees:[],
-inputValues:{
-  id:'',
-  firstName:'',
-  lastName:'',
-  checked:false,
-}
-}
-const reducer=(state,action)=>{
+const initialState = {
+  employees: [],
+  inputValues: {
+    id: "",
+    firstName: "",
+    lastName: "",
+    checked: false,
+  },
+};
+const reducer = (state, action) => {
   switch (action.type) {
-    case 'addEmployee':
-      return { ...state,
-        employees:[...state.employees,action.payload],
-        inputValues:{id :'', 
-        firstName:'',
-        lastName:'',
-        checked:false,
-      }};
-    case 'deleteEmployee':
-     
-      return { ...state, 
-        employees:state.employees.filter((_,i)=>i !== action.index)};
-    case 'updateInput':
-      
-      return {...state,
-        inputValues:{...state.inputValues,[action.field]:[action.checked]=='checkbox'?checked:[action.value]}
+    case "addEmployee":
+      return {
+        ...state,
+        employees: [...state.employees, action.payload],
+        inputValues: { id: "", firstName: "", lastName: "", checked: false },
       };
-  
+    case "deleteEmployee":
+      return {
+        ...state,
+        employees: state.employees.filter((_, i) => i !== action.index),
+      };
+    case "updateInput":
+      return {
+        ...state,
+        inputValues: {
+          ...state.inputValues,
+          [action.field]:
+            [action.checked] == "checkbox" ? checked : [action.value],
+        },
+      };
+
     default:
       return state;
   }
-}
+};
+dlknwakd
 export default function DemoUseReducer() {
-const [state, dispatch]=useReducer(reducer,initialState)
-  const handleAddEmployee=(e)=>{
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const handleAddEmployee = (e) => {
     e.preventDefault();
     if (
-      state.inputValues.id&&
-      state.inputValues.firstName&&
-      state.inputValues.lastName) 
-      {
-      dispatch({type:'addEmployee', payload:state.inputValues});
+      state.inputValues.id &&
+      state.inputValues.firstName &&
+      state.inputValues.lastName
+    ) {
+      dispatch({ type: "addEmployee", payload: state.inputValues });
     }
-  }
-  const handleInputchange=(e)=>{
+  };
+  const handleInputchange = (e) => {
     dispatch({
-      type: 'updateInput',
+      type: "updateInput",
       field: e.target.name,
       value: e.target.value,
-      checked:e.target.type
-    })
-
-  }
+      checked: e.target.type,
+    });
+  };
   return (
     <>
       <form onSubmit={handleAddEmployee}>
@@ -103,18 +106,26 @@ const [state, dispatch]=useReducer(reducer,initialState)
             onChange={handleInputchange}
           />
         </div>
-        <button type="submit" className="btn btn-primary">Add Employee</button>
+        <button type="submit" className="btn btn-primary">
+          Add Employee
+        </button>
       </form>
       <ul className="list-group mt-3">
-        {state.employees.map((employee,index)=>(
-          <li key={index} className="list-group-item d-flex justify-content-between align-items-center" >
-{employee.id}-
-{employee.firstName + employee.lastName}-
-{employee.checked?'checked':'not check'}
-<button className="btn btn-danger" onClick={()=>dispatch({type:'deleteEmployee',index})}>Delete</button>
-        </li>
-        ))
-        }
+        {state.employees.map((employee, index) => (
+          <li
+            key={index}
+            className="list-group-item d-flex justify-content-between align-items-center"
+          >
+            {employee.id}-{employee.firstName + employee.lastName}-
+            {employee.checked ? "checked" : "not check"}
+            <button
+              className="btn btn-danger"
+              onClick={() => dispatch({ type: "deleteEmployee", index })}
+            >
+              Delete
+            </button>
+          </li>
+        ))}
       </ul>
     </>
   );
