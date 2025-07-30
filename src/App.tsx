@@ -8,10 +8,12 @@ import DemoUseId_useRef from "./demo/DemoUseId_useRef.tsx";
 import DemoUseReducer from "./demo/DemoUseReducer.tsx";
 import DemoUseCallback from "./demo/DemoUseCallback.tsx";
 import DemoUseMemo from "./demo/DemoUseMemo.tsx";
+import TodoList from "./demo/TodoList.tsx";
 
 function App() {
   return (
     <>
+    <TodoList/>
       <DemoUseCallback />
       {/*<CompletedValidate/>*/}
       <DemoUseRef />

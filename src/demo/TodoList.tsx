@@ -1,36 +1,43 @@
-import {useState} from "react";
+import { useCallback, useMemo, useState } from "react";
 
 export default function TodoList() {
-    const [todo, setTodo] = useState(['Learn React ', 'Build project'])
-    const [newTodo, setNewTodo] = useState('')
+  const [todo, setTodo] = useState(["Learn React ", "Build project"]);
+  const [newTodo, setNewTodo] = useState("");
 
-    const removetodo = (i) => {
-        const newtodos = todo.filter((_, it) => it !== i);
-        setTodo(newtodos);
+  const removetodo = (i) => {
+    const newtodos = todo.filter((_, it) => it !== i);
+    setTodo(newtodos);
+  };
+  const addTodo = () => {
+    if (newTodo.trim()) {
+      setTodo([newTodo.trim(), ...todo]);
+      setNewTodo("");
     }
-    const addTodo = () => {
-        if (newTodo.trim()){
-            setTodo([...todo,newTodo.trim()])
-            setNewTodo('');
-        }
-    }
+  };
+  const handleChange = useCallback((e) => {
+    setNewTodo(e.target.value);
+  }, []);
+  const filtertodo = useMemo(() => {
+    return todo.filter((e) =>
+      `${e.todo}`.toLowerCase().includes(newTodo.toLowerCase())
+    );
+  }, [todo, newTodo]);
 
-    return (<>
-        <div>
-            <h1>Todo list</h1>
-            <ul>
-                {todo.map((todo,i) =>
-                    (<li key={i}>{todo}
-                        <button onClick={() =>
-                            removetodo(i)}>remove
-                        </button>
-                    </li>))}
-
-            </ul>
-            <input type="text" value={newTodo}
-                   onChange={(e) =>
-                       setNewTodo(e.target.value)}/>
-            <button onClick={addTodo}>Add todo</button>
-        </div>
-    </>)
+  return (
+    <>
+      <div>
+        <h1>Todo list</h1>
+        <input type="text" value={newTodo} onChange={handleChange} />
+        <button onClick={addTodo}>Add todo</button>
+        <ul>
+          {filtertodo.map((todo, i) => (
+            <li key={i}>
+              {todo}
+              <button onClick={() => removetodo(i)}>remove</button>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </>
+  );
 }
