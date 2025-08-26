@@ -1,4 +1,4 @@
-import { useReducer } from "react";
+import {useCallback, useReducer} from "react";
 const initialState = {
   employees: [],
   inputValues: {
@@ -13,7 +13,7 @@ const reducer = (state, action) => {
     case "addEmployee":
       return {
         ...state,
-        employees: [...state.employees, action.payload],
+        employees: [ action.payload,...state.employees],
         inputValues: { id: "", firstName: "", lastName: "", checked: false },
       };
     case "deleteEmployee":
@@ -48,14 +48,14 @@ export default function DemoUseReducer() {
       dispatch({ type: "addEmployee", payload: state.inputValues });
     }
   };
-  const handleInputchange = (e) => {
+  const handleInputchange = useCallback((e) => {
     dispatch({
       type: "updateInput",
       field: e.target.name,
       value: e.target.value,
       checked: e.target.type,
     });
-  };
+  },[]);
   return (
     <>
       <form onSubmit={handleAddEmployee}>
