@@ -13,12 +13,12 @@ import TodoList from "./demo/TodoList.tsx";
 function App() {
   return (
     <>
-    <TodoList/>
+      <DemoUseState />
+      <TodoList />
       <DemoUseCallback />
       {/*<CompletedValidate/>*/}
       <DemoUseRef />
       <Timer />
-      <DemoUseState />
       <LocalStorageComponent />
       <ThemeProvider>
         <ThemeComponent />
@@ -26,7 +26,7 @@ function App() {
       <DemoUseId_useRef />
       <DemoUseReducer />
       <DemoUseCallback />
-      <DemoUseMemo/>
+      <DemoUseMemo />
     </>
   );
 }
