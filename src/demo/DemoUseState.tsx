@@ -103,6 +103,12 @@ export default function DemoUseState() {
         >
           Add Employee
         </button>
+        <button
+          style={{ cursor: "pointer" }}
+          className={`btn btn-warning px-20 py-10 rounded-1 text-light`}
+        >
+          Update Employee
+        </button>
       </form>
       <h2>Employees List</h2>
       {loading ? (
