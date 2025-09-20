@@ -9,6 +9,7 @@ export default function DemoUseState() {
     lastName: "",
     email: "",
   });
+  const [isEditing, setIsEditing] = useState(false);
   useEffect(() => {
     fetch("data.json")
       .then((response) => response.json())
@@ -34,20 +35,30 @@ export default function DemoUseState() {
   const handleDeleteEmployee = (index) => {
     setEmployees(employees.filter((_, i) => i != index));
   };
+  const UpdateEmployee=(e)=>{
+    e.preventDefault();
+    setEmployees(employees.map((emp)=>emp.id===inputvalue.id?{...inputvalue}:emp))
+    setIsEditing(false);
+    setInputvalue({ id: "", firstName: "", lastName: "", email: "" });
+  }
   const handleEditEmployee = (id) => {
     const employ = employees.find((emp) => emp.id === id);
     if (employ) {
       setInputvalue({
+        // option1
         id: employ.id,
         firstName: employ.firstName || "",
         lastName: employ.lastName || "",
         email: employ.email || "",
+        //option2
+        //{ ...employ }
       });
+      setIsEditing(true);
     }
   };
   return (
     <>
-      <form className={`mb-1`} onSubmit={AddEmployee}>
+      <form className={`mb-1`}>
         <input
           type="text"
           className={`form-control p-1 mr-1 mb-1 border rounded-1 border-success`}
@@ -97,13 +108,16 @@ export default function DemoUseState() {
           placeholder={`Email`}
         />
         <button
-          type="submit"
           style={{ cursor: "pointer" }}
           className={`btn btn-primary px-20 py-10 rounded-1 text-light`}
+          onClick={AddEmployee}
+          disabled={isEditing}
         >
           Add Employee
         </button>
         <button
+          onClick={UpdateEmployee}
+          disabled={!isEditing}
           style={{ cursor: "pointer" }}
           className={`btn btn-warning px-20 py-10 rounded-1 text-light`}
         >
@@ -125,6 +139,7 @@ export default function DemoUseState() {
                 {employee.id} - {employee.firstName} {employee.lastName} (
                 {employee.email})
                 <button
+                  disabled={isEditing}
                   className="btn btn-danger btn-sm bg-danger "
                   onClick={() => handleDeleteEmployee(index)}
                 >
