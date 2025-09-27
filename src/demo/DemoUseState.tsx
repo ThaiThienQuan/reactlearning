@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 export default function DemoUseState() {
+  //create employees variable and its function
   const [employees, setEmployees] = useState([]);
   const [loading, setLoading] = useState(true);
   const [inputvalue, setInputvalue] = useState({
@@ -51,8 +52,9 @@ export default function DemoUseState() {
         lastName: employ.lastName || "",
         email: employ.email || "",
         //option2
-        //{ ...employ }
-      });
+        // ...employ 
+      }
+    );
       setIsEditing(true);
     }
   };
