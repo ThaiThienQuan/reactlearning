@@ -4,6 +4,7 @@ export default function DemoUseState() {
   //create employees variable and its function
   const [employees, setEmployees] = useState([]);
   const [loading, setLoading] = useState(true);
+  //add id , fisrtname, lastname,email variable for input employees
   const [inputvalue, setInputvalue] = useState({
     id: "",
     firstName: "",
