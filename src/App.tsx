@@ -9,10 +9,12 @@ import DemoUseReducer from "./demo/DemoUseReducer.tsx";
 import DemoUseCallback from "./demo/DemoUseCallback.tsx";
 import DemoUseMemo from "./demo/DemoUseMemo.tsx";
 import TodoList from "./demo/TodoList.tsx";
+import DemoUseEffect from "./demo/DemoUseEffect.tsx";
 
 function App() {
   return (
     <>
+    <DemoUseEffect/>
       <DemoUseState />
       <TodoList />
       <DemoUseCallback />
