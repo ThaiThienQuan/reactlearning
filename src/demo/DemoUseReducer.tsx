@@ -1,3 +1,5 @@
+import { useReducer } from "react";
+
 const initialData = {
   data: [],
   inputValue: {
@@ -10,18 +12,19 @@ const initialData = {
 function reducer(state, action) {
   switch (action.type) {
     case "addMember":
-      return{...state,};
+      return { ...state };
     case "deleteMember":
-      return{...state,};
+      return { ...state };
     case "updateMember":
-      return{...state,};
+      return { ...state };
     case "updateInput":
-      return{...state,};
+      return { ...state };
 
     default:
-      break;
+      return state;
   }
 }
 export default function DemoUseReducer() {
+  const [state, dispatch] = useReducer(reducer, initialData);
   return <></>;
 }
