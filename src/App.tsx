@@ -14,21 +14,12 @@ import DemoUseEffect from "./demo/DemoUseEffect.tsx";
 function App() {
   return (
     <>
-    <DemoUseEffect/>
       <DemoUseState />
       <TodoList />
-      <DemoUseCallback />
-      {/*<CompletedValidate/>*/}
-      <DemoUseRef />
-      <Timer />
-      <LocalStorageComponent />
       <ThemeProvider>
         <ThemeComponent />
       </ThemeProvider>
-      <DemoUseId_useRef />
       <DemoUseReducer />
-      <DemoUseCallback />
-      <DemoUseMemo />
     </>
   );
 }

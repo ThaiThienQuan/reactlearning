@@ -3,7 +3,8 @@ export default function DemoUseEffect() {
   const [books, setbook] = useState([]);
   const [loading, setloading] = useState(true);
   useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/albums")
+    fetch("data.json")
+    //fetch("https://jsonplaceholder.typicode.com/albums")
       .then((response) => response.json())
       .then((data) => {
         setbook(data);
@@ -20,7 +21,7 @@ export default function DemoUseEffect() {
           <ul className="list-group">
             {books.map((book) => (
               <li key={book.id} className="list-group-item">
-                {book.userId}-{book.id}-{book.title}
+                {book.id}-{book.firstName}-{book.lastName}-{book.email}
               </li>
             ))}
           </ul>
