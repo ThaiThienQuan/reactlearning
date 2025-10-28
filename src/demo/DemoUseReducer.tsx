@@ -84,9 +84,11 @@ export default function DemoUseReducer() {
             UPdate
           </button>
         </form>
-        <ul className="">
-          <li></li>
-        </ul>
+        <table>
+          <td>
+            <tr></tr>
+          </td>
+        </table>
       </div>
     </>
   );
