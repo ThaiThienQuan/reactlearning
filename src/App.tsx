@@ -14,11 +14,11 @@ import DemoUseEffect from "./demo/DemoUseEffect.tsx";
 function App() {
   return (
     <>
-      <DemoUseState />
-      <TodoList />
-      <ThemeProvider>
-        <ThemeComponent />
-      </ThemeProvider>
+       <DemoUseState />
+      {/* // <TodoList />
+      // <ThemeProvider>
+      //   <ThemeComponent />
+      // </ThemeProvider> */} 
       <DemoUseReducer />
     </>
   );

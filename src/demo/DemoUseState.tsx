@@ -61,10 +61,12 @@ export default function DemoUseState() {
   };
   return (
     <>
-      <form className={`mb-1`}>
+    
+      <form className={`container  mb-1`}>
+        <h2>useState</h2>
         <input
           type="text"
-          className={`form-control p-1 mr-1 mb-1 border rounded-1 border-success`}
+          className={`form-control  p-1 mr-1 mb-1 border rounded-1 border-success`}
           value={inputvalue.id}
           onChange={(e) =>
             setInputvalue({
@@ -112,7 +114,7 @@ export default function DemoUseState() {
         />
         <button
           style={{ cursor: "pointer" }}
-          className={`btn btn-primary px-20 py-10 rounded-1 text-light`}
+          className={`btn btn-primary px-15 py-10 mt-2 mx-2 rounded-1 text-light`}
           onClick={AddEmployee}
           disabled={isEditing}
         >
@@ -122,7 +124,7 @@ export default function DemoUseState() {
           onClick={UpdateEmployee}
           disabled={!isEditing}
           style={{ cursor: "pointer" }}
-          className={`btn btn-warning px-20 py-10 rounded-1 text-light`}
+          className={`btn btn-warning px-15 py-10  mt-2 rounded-1 text-light`}
         >
           Update Employee
         </button>

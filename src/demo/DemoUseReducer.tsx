@@ -4,8 +4,8 @@ const initialData = {
   data: [],
   inputValue: {
     id: "",
-    Name: "",
-    cash: Number,
+    name: "",
+    age: 0,
     checked: false,
   },
 };
@@ -26,5 +26,58 @@ function reducer(state, action) {
 }
 export default function DemoUseReducer() {
   const [state, dispatch] = useReducer(reducer, initialData);
-  return <></>;
+  const handleChange = () => {};
+  const AddData = () => {};
+  const UpdateData = () => {};
+  return (
+    <>
+      <h2>Demo useReducer</h2>
+      <div className={`container col-md-12 mx-auto my-3`}>
+        <form>
+          <div className="form-group">
+            <label htmlFor="id">ID</label>
+            <input
+            id="id"
+              type="text"
+              className="form-control"
+              onChange={handleChange}
+              value={state.inputValue.id}
+              placeholder="ID"
+            />
+          </div>
+          <div className="form-group">
+            <input
+              type="text"
+              className="form-control"
+              onChange={handleChange}
+              value={state.inputValue.name}
+              placeholder="Name"
+            />
+          </div>
+          <div className="form-group">
+            <input
+              type="number"
+              className="form-control"
+              onChange={handleChange}
+              value={state.inputValue.age}
+            />
+          </div>
+          <div className="form-group">
+            <input
+              type="checkbox"
+              className="form-control"
+              onChange={handleChange}
+              checked={state.inputValue.checked}
+            />
+          </div>
+          <button onClick={AddData}>Add</button>
+
+          <button onClick={UpdateData}>UPdate</button>
+        </form>
+        <ul className="">
+          <li></li>
+        </ul>
+      </div>
+    </>
+  );
 }
