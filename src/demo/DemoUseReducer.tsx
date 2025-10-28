@@ -37,7 +37,7 @@ export default function DemoUseReducer() {
           <div className="form-group">
             <label htmlFor="id">ID</label>
             <input
-            id="id"
+              id="id"
               type="text"
               className="form-control"
               onChange={handleChange}
@@ -70,9 +70,19 @@ export default function DemoUseReducer() {
               checked={state.inputValue.checked}
             />
           </div>
-          <button onClick={AddData}>Add</button>
+          <button
+            onClick={AddData}
+            className={`btn btn-primary px-15 py-10 mt-2 mx-2 rounded-1 text-light`}
+          >
+            Add
+          </button>
 
-          <button onClick={UpdateData}>UPdate</button>
+          <button
+            onClick={UpdateData}
+            className={`btn btn-warning px-15 py-10 mt-2 mx-2 rounded-1 text-light`}
+          >
+            UPdate
+          </button>
         </form>
         <ul className="">
           <li></li>

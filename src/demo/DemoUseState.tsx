@@ -114,7 +114,7 @@ export default function DemoUseState() {
         />
         <button
           style={{ cursor: "pointer" }}
-          className={`btn btn-primary px-15 py-10 mt-2 mx-2 rounded-1 text-light`}
+            className={`btn btn-primary px-15 py-10 mt-2 mx-2 rounded-1 text-light`}
           onClick={AddEmployee}
           disabled={isEditing}
         >
