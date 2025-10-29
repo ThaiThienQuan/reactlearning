@@ -84,12 +84,21 @@ export default function DemoUseReducer() {
             UPdate
           </button>
         </form>
-        dfmklnalfn
         <table>
-          <td>
-            <tr></tr>
-          </td>
+          <tr className="mt-3 p-0">
+            {state.data.map((data, index) => (
+              <td
+                key={index}
+                className="d-flex justify-content-between align-items-center p-1 mb-1 border rounded-1"
+              >
+                {data.id}-{data.name}-{data.age}-
+                {data.checked ? "Remembered" : "Not remember"}
+                <button className="btn btn-danger btn-sm bg-danger">Del</button>
+              </td>
+            ))}
+          </tr>
         </table>
+        frnjlnlg
       </div>
     </>
   );
