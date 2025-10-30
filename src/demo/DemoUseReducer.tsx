@@ -1,9 +1,6 @@
 import { useReducer } from "react";
-import InputValidate from "./InputValidate";
-import { data } from "react-router-dom";
-
 const initialData = {
-  data: [],
+  datas: [],
   inputValue: {
     id: "",
     name: "",
@@ -16,18 +13,24 @@ function reducer(state, action) {
     case "addData":
       return {
         ...state,
-        data:[...state,action.payload],
+        datas: [...state, action.payload],
         inputValue: { id: "", name: "", age: 0, checked: false },
       };
     case "deleteData":
-      return { ...state ,
-        data: state.data.filter((_,index)=>index!==action.index),
+      return {
+        ...state,
+        datas: state.datas.filter((_, index) => index !== action.index),
       };
     case "updateData":
       return { ...state };
     case "updateInput":
-      return { ...state ,
-        inputValue:{...state.inputValue, [action.field]:[action.checked]?'checked':action.value}
+      return {
+        ...state,
+        inputValue: {
+          ...state.inputValue,
+          [action.field]:
+            [action.sctype] == "checkbox" ? action.checked : action.value,
+        },
       };
 
     default:
@@ -36,18 +39,21 @@ function reducer(state, action) {
 }
 export default function DemoUseReducer() {
   const [state, dispatch] = useReducer(reducer, initialData);
-  const handleChange = () => {};
+  const handleChange = (e) => {
+    dispatch({
+      type: "updateInput",
+      field: e.target.name,
+      value: e.target.value,
+      checked: e.target.checked,
+      sctype: e.target.type,
+    });
+  };
   const AddData = (e) => {
     e.preventDefault();
-    if (
-      state.inputValue.id &&
-      state.inputValue.name &&
-      state.inputValue.age &&
-    ) {
-       dispatch({type :'add'})
+    if (state.inputValue.id && state.inputValue.name && state.inputValue.age) {
+      dispatch({ type: "addData", payload: state.inputValue });
     }
   };
-  const UpdateData = () => {};
   return (
     <>
       <h2>Demo useReducer</h2>
@@ -58,6 +64,7 @@ export default function DemoUseReducer() {
             <input
               id="id"
               type="text"
+              name="id"
               className="form-control  p-1 mr-1 mb-1 border rounded-1 border-success"
               onChange={handleChange}
               value={state.inputValue.id}
@@ -67,7 +74,8 @@ export default function DemoUseReducer() {
           <div className="form-group">
             <label htmlFor="name">Name</label>
             <input
-            id="name"
+              id="name"
+              name="name"
               type="text"
               className="form-control  p-1 mr-1 mb-1 border rounded-1 border-success"
               onChange={handleChange}
@@ -78,7 +86,8 @@ export default function DemoUseReducer() {
           <div className="form-group">
             <label htmlFor="age">Age</label>
             <input
-            id="age"
+              id="age"
+              name="age"
               type="number"
               className="form-control  p-1 mr-1 mb-1 border rounded-1 border-success"
               onChange={handleChange}
@@ -88,6 +97,7 @@ export default function DemoUseReducer() {
           <div className="form-group">
             <input
               id="checked"
+              name="checked"
               type="checkbox"
               className=" p-1 mr-1 mb-1 border rounded-1 border-success"
               onChange={handleChange}
@@ -103,7 +113,7 @@ export default function DemoUseReducer() {
           </button>
 
           <button
-            onClick={UpdateData}
+            // onClick={}
             className={`btn btn-warning px-15 py-10 mt-2 mx-2 rounded-1 text-light`}
           >
             UPdate
@@ -112,7 +122,7 @@ export default function DemoUseReducer() {
         <table>
           <h3 style={{}}>Table of Data</h3>
           <tr className="mt-3 p-0">
-            {state.data.map((data, index) => (
+            {state.datas.map((data, index) => (
               <td
                 key={index}
                 className="d-flex justify-content-between align-items-center p-1 mb-1 border rounded-1"
