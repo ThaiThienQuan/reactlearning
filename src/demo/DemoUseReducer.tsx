@@ -98,7 +98,6 @@ export default function DemoUseReducer() {
             ))}
           </tr>
         </table>
-        frnjlnlg
       </div>
     </>
   );
