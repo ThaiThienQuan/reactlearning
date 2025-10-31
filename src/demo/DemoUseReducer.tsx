@@ -1,11 +1,12 @@
 import { useReducer } from "react";
+import { data } from "react-router-dom";
 const initialData = {
   datas: [],
   inputValue: {
     id: "",
     name: "",
     age: 0,
-    checked: false,
+    // checked: false,
   },
 };
 function reducer(state, action) {
@@ -13,7 +14,7 @@ function reducer(state, action) {
     case "addData":
       return {
         ...state,
-        datas: [...state, action.payload],
+        datas: [...state.datas, action.payload],
         inputValue: { id: "", name: "", age: 0, checked: false },
       };
     case "deleteData":
@@ -22,14 +23,15 @@ function reducer(state, action) {
         datas: state.datas.filter((_, index) => index !== action.index),
       };
     case "updateData":
-      return { ...state };
+      return { ...state,
+        
+       };
     case "updateInput":
       return {
         ...state,
         inputValue: {
           ...state.inputValue,
-          [action.field]:
-            [action.sctype] == "checkbox" ? action.checked : action.value,
+          [action.field]: action.value,
         },
       };
 
@@ -113,7 +115,6 @@ export default function DemoUseReducer() {
           </button>
 
           <button
-            // onClick={}
             className={`btn btn-warning px-15 py-10 mt-2 mx-2 rounded-1 text-light`}
           >
             UPdate
@@ -129,8 +130,13 @@ export default function DemoUseReducer() {
               >
                 {data.id}-{data.name}-{data.age}-
                 {data.checked ? "Remembered" : "Not remember"}
-                <button className="btn btn-danger btn-sm bg-danger">Del</button>
-                <button className="btn btn-danger btn-sm bg-warning">
+                <button
+                  className="btn btn-danger mx-2 btn-sm bg-danger"
+                  onClick={() => dispatch({ type: "deleteData", index })}
+                >
+                  Del
+                </button>
+                <button className="btn btn-warning btn-sm bg-warning">
                   Edit
                 </button>
               </td>

@@ -5,11 +5,11 @@ import Timer from "./demo/Timer.tsx";
 import { ThemeProvider } from "./assets/ThemeContext.tsx";
 import DemoUseRef from "./demo/DemoUseRef.tsx";
 import DemoUseId_useRef from "./demo/DemoUseId_useRef.tsx";
-import DemoUseReducer from "./demo/DemoUseReducer.tsx";
 import DemoUseCallback from "./demo/DemoUseCallback.tsx";
 import DemoUseMemo from "./demo/DemoUseMemo.tsx";
 import TodoList from "./demo/TodoList.tsx";
 import DemoUseEffect from "./demo/DemoUseEffect.tsx";
+import DemoUseReducer from "./demo/DemoUseReducer.tsx";
 
 function App() {
   return (
@@ -19,7 +19,7 @@ function App() {
       // <ThemeProvider>
       //   <ThemeComponent />
       // </ThemeProvider> */} 
-      <DemoUseReducer />
+      <DemoUseReducer/>
     </>
   );
 }
