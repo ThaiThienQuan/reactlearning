@@ -6,7 +6,7 @@ const initialData = {
     id: "",
     name: "",
     age: 0,
-    // checked: false,
+    checked: false,
   },
 };
 function reducer(state, action) {
@@ -23,15 +23,14 @@ function reducer(state, action) {
         datas: state.datas.filter((_, index) => index !== action.index),
       };
     case "updateData":
-      return { ...state,
-        
-       };
+      return { ...state };
     case "updateInput":
       return {
         ...state,
         inputValue: {
           ...state.inputValue,
-          [action.field]: action.value,
+          [action.field]:
+            action.sctype == "checkbox" ? action.checked : action.value,
         },
       };
 
@@ -39,6 +38,7 @@ function reducer(state, action) {
       return state;
   }
 }
+dsjkvkbj
 export default function DemoUseReducer() {
   const [state, dispatch] = useReducer(reducer, initialData);
   const handleChange = (e) => {
