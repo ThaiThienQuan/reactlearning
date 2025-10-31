@@ -38,7 +38,6 @@ function reducer(state, action) {
       return state;
   }
 }
-dsjkvkbj
 export default function DemoUseReducer() {
   const [state, dispatch] = useReducer(reducer, initialData);
   const handleChange = (e) => {
