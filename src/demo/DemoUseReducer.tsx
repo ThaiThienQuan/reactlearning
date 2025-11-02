@@ -1,10 +1,10 @@
-import { useReducer } from "react";
+import { useCallback, useReducer } from "react";
 const initialData = {
   datas: [],
   inputValue: {
     id: "",
     name: "",
-    age: 0,
+    age: Number,
     checked: false,
   },
 };
@@ -23,6 +23,11 @@ function reducer(state, action) {
       };
     case "updateData":
       return { ...state };
+    case "EditData":
+      return { ...state,
+        datas:state.datas.find((index)=>(index.id==action.itd)),
+        inputValue:{...state.datas}
+       };
     case "updateInput":
       return {
         ...state,
@@ -39,7 +44,7 @@ function reducer(state, action) {
 }
 export default function DemoUseReducer() {
   const [state, dispatch] = useReducer(reducer, initialData);
-  const handleChange = (e) => {
+  const handleChange = useCallback((e) => {
     dispatch({
       type: "updateInput",
       field: e.target.name,
@@ -47,13 +52,16 @@ export default function DemoUseReducer() {
       checked: e.target.checked,
       sctype: e.target.type,
     });
-  };
+  },[]);
   const AddData = (e) => {
     e.preventDefault();
     if (state.inputValue.id && state.inputValue.name && state.inputValue.age) {
       dispatch({ type: "addData", payload: state.inputValue });
     }
   };
+  const handleEdit=(id)=>{
+    dispatch({type:"EditData",itd:state.id})
+  }
   return (
     <>
       <h2>Demo useReducer</h2>
@@ -134,12 +142,13 @@ export default function DemoUseReducer() {
                 >
                   Del
                 </button>
-                <button className="btn btn-warning btn-sm bg-warning">
+                <button 
+               onClick={()=>handleEdit(data.id)} 
+                className="btn btn-warning btn-sm bg-warning">
                   Edit
                 </button>
               </td>
             ))}
-            fsnjgb
           </tr>
         </table>
       </div>
