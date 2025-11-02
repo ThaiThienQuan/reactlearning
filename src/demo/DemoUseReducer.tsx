@@ -1,5 +1,4 @@
 import { useReducer } from "react";
-import { data } from "react-router-dom";
 const initialData = {
   datas: [],
   inputValue: {
@@ -140,6 +139,7 @@ export default function DemoUseReducer() {
                 </button>
               </td>
             ))}
+            fsnjgb
           </tr>
         </table>
       </div>
