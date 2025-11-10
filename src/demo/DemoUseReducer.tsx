@@ -7,6 +7,7 @@ const initialData = {
     age: Number,
     checked: false,
   },
+  editIndex: null,
 };
 function reducer(state, action) {
   switch (action.type) {
@@ -24,9 +25,10 @@ function reducer(state, action) {
     case "updateData":
       return { ...state };
     case "EditData":
+      const currentData=state.datas[action.index];
       return { ...state,
-        datas:state.datas.find((index)=>(index.id==action.itd)),
-        inputValue:{...state.datas}
+        inputValue:{...currentData},
+        
        };
     case "updateInput":
       return {
@@ -59,8 +61,8 @@ export default function DemoUseReducer() {
       dispatch({ type: "addData", payload: state.inputValue });
     }
   };
-  const handleEdit=(id)=>{
-    dispatch({type:"EditData",itd:state.id})
+  const handleEdit=(index)=>{
+    dispatch({type:"EditData",index})
   }
   return (
     <>
@@ -143,7 +145,7 @@ export default function DemoUseReducer() {
                   Del
                 </button>
                 <button 
-               onClick={()=>handleEdit(data.id)} 
+               onClick={()=>handleEdit(index)} 
                 className="btn btn-warning btn-sm bg-warning">
                   Edit
                 </button>
