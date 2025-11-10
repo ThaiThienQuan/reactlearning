@@ -23,13 +23,12 @@ function reducer(state, action) {
         datas: state.datas.filter((_, index) => index !== action.index),
       };
     case "updateData":
+      const updateData=[...state.datas];
+      updateData[state.editIndex]=state.inputValue;
       return { ...state };
     case "EditData":
-      const currentData=state.datas[action.index];
-      return { ...state,
-        inputValue:{...currentData},
-        
-       };
+      const currentData = state.datas[action.index];
+      return { ...state, inputValue: { ...currentData } };
     case "updateInput":
       return {
         ...state,
@@ -54,16 +53,20 @@ export default function DemoUseReducer() {
       checked: e.target.checked,
       sctype: e.target.type,
     });
-  },[]);
+  }, []);
   const AddData = (e) => {
     e.preventDefault();
     if (state.inputValue.id && state.inputValue.name && state.inputValue.age) {
       dispatch({ type: "addData", payload: state.inputValue });
     }
   };
-  const handleEdit=(index)=>{
-    dispatch({type:"EditData",index})
-  }
+  const UpdateData = () => {
+    dispatch({ type: "updateData" });
+  };
+  const handleEdit = (index) => {
+    dispatch({ type: "EditData", index });
+  };
+
   return (
     <>
       <h2>Demo useReducer</h2>
@@ -115,18 +118,21 @@ export default function DemoUseReducer() {
             />
             <label htmlFor="checked">Remember?</label>
           </div>
-          <button
-            onClick={AddData}
-            className={`btn btn-primary px-15 py-10 mt-2 mx-2 rounded-1 text-light`}
-          >
-            Add
-          </button>
-
-          <button
-            className={`btn btn-warning px-15 py-10 mt-2 mx-2 rounded-1 text-light`}
-          >
-            UPdate
-          </button>
+          {state.editIndex == null ? (
+            <button
+              onClick={AddData}
+              className={`btn btn-primary px-15 py-10 mt-2 mx-2 rounded-1 text-light`}
+            >
+              Add
+            </button>
+          ) : (
+            <button
+              onClick={UpdateData}
+              className={`btn btn-warning px-15 py-10 mt-2 mx-2 rounded-1 text-light`}
+            >
+              UPdate
+            </button>
+          )}
         </form>
         <table>
           <h3 style={{}}>Table of Data</h3>
@@ -144,9 +150,10 @@ export default function DemoUseReducer() {
                 >
                   Del
                 </button>
-                <button 
-               onClick={()=>handleEdit(index)} 
-                className="btn btn-warning btn-sm bg-warning">
+                <button
+                  onClick={() => handleEdit(index)}
+                  className="btn btn-warning btn-sm bg-warning"
+                >
                   Edit
                 </button>
               </td>
