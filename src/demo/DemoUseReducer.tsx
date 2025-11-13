@@ -23,21 +23,21 @@ function reducer(state, action) {
         datas: state.datas.filter((_, index) => index !== action.index),
       };
     case "updateData":
-      const updateData = [...state.datas];
+      { const updateData = [...state.datas];
       updateData[state.editIndex] = state.inputValue;
       return {
         ...state,
         datas: updateData,
         inputValue: { id: "", name: "", age: 0, checked: false },
         editIndex: null,
-      };
+      }; }
     case "EditData":
-      const currentData = state.datas[action.index];
+      { const currentData = state.datas[action.index];
       return {
         ...state,
         inputValue: { ...currentData },
         editIndex: action.index,
-      };
+      }; }
     case "updateInput":
       return {
         ...state,
