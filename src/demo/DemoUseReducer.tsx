@@ -33,7 +33,11 @@ function reducer(state, action) {
       };
     case "EditData":
       const currentData = state.datas[action.index];
-      return { ...state, inputValue: { ...currentData } };
+      return {
+        ...state,
+        inputValue: { ...currentData },
+        editIndex: action.index,
+      };
     case "updateInput":
       return {
         ...state,
@@ -135,7 +139,7 @@ export default function DemoUseReducer() {
               onClick={UpdateData}
               className={`btn btn-warning px-15 py-10 mt-2 mx-2 rounded-1 text-light`}
             >
-              UPdate
+              Update
             </button>
           )}
         </form>
