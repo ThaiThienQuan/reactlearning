@@ -23,9 +23,14 @@ function reducer(state, action) {
         datas: state.datas.filter((_, index) => index !== action.index),
       };
     case "updateData":
-      const updateData=[...state.datas];
-      updateData[state.editIndex]=state.inputValue;
-      return { ...state };
+      const updateData = [...state.datas];
+      updateData[state.editIndex] = state.inputValue;
+      return {
+        ...state,
+        datas: updateData,
+        inputValue: { id: "", name: "", age: 0, checked: false },
+        editIndex: null,
+      };
     case "EditData":
       const currentData = state.datas[action.index];
       return { ...state, inputValue: { ...currentData } };
@@ -160,7 +165,6 @@ export default function DemoUseReducer() {
             ))}
           </tr>
         </table>
-        nvjdfsvbk
       </div>
     </>
   );
