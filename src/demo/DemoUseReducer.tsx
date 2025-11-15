@@ -23,6 +23,7 @@ function reducer(state, action) {
         datas: state.datas.filter((_, index) => index !== action.index),
       };
     case "updateData":
+      if (state.editIndex === null) return state;
       { const updateData = [...state.datas];
       updateData[state.editIndex] = state.inputValue;
       return {
@@ -129,6 +130,7 @@ export default function DemoUseReducer() {
           </div>
           {state.editIndex == null ? (
             <button
+            type="button"
               onClick={AddData}
               className={`btn btn-primary px-15 py-10 mt-2 mx-2 rounded-1 text-light`}
             >
@@ -136,6 +138,7 @@ export default function DemoUseReducer() {
             </button>
           ) : (
             <button
+            type="button"
               onClick={UpdateData}
               className={`btn btn-warning px-15 py-10 mt-2 mx-2 rounded-1 text-light`}
             >
