@@ -4,7 +4,7 @@ const initialData = {
   inputValue: {
     id: "",
     name: "",
-    age: Number,
+    age: 0,
     checked: false,
   },
   editIndex: null,
@@ -143,8 +143,9 @@ export default function DemoUseReducer() {
             </button>
           )}
         </form>
+        <h3 style={{}}>Table of Data</h3>
         <table>
-          <h3 style={{}}>Table of Data</h3>
+  
           <tr className="mt-3 p-0">
             {state.datas.map((data, index) => (
               <td
