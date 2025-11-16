@@ -139,6 +139,7 @@ export default function DemoUseReducer() {
           ) : (
             <button
             type="button"
+            
               onClick={UpdateData}
               className={`btn btn-warning px-15 py-10 mt-2 mx-2 rounded-1 text-light`}
             >
