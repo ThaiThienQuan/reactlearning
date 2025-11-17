@@ -8,6 +8,7 @@ const initialData = {
     checked: false,
   },
   editIndex: null,
+  search: "",
 };
 function reducer(state, action) {
   switch (action.type) {
@@ -24,21 +25,24 @@ function reducer(state, action) {
       };
     case "updateData":
       if (state.editIndex === null) return state;
-      { const updateData = [...state.datas];
-      updateData[state.editIndex] = state.inputValue;
-      return {
-        ...state,
-        datas: updateData,
-        inputValue: { id: "", name: "", age: 0, checked: false },
-        editIndex: null,
-      }; }
-    case "EditData":
-      { const currentData = state.datas[action.index];
+      {
+        const updateData = [...state.datas];
+        updateData[state.editIndex] = state.inputValue;
+        return {
+          ...state,
+          datas: updateData,
+          inputValue: { id: "", name: "", age: 0, checked: false },
+          editIndex: null,
+        };
+      }
+    case "EditData": {
+      const currentData = state.datas[action.index];
       return {
         ...state,
         inputValue: { ...currentData },
         editIndex: action.index,
-      }; }
+      };
+    }
     case "updateInput":
       return {
         ...state,
@@ -48,7 +52,8 @@ function reducer(state, action) {
             action.sctype == "checkbox" ? action.checked : action.value,
         },
       };
-
+    case "updateSearch":
+      return { ...state, search: action.value };
     default:
       return state;
   }
@@ -130,7 +135,7 @@ export default function DemoUseReducer() {
           </div>
           {state.editIndex == null ? (
             <button
-            type="button"
+              type="button"
               onClick={AddData}
               className={`btn btn-primary px-15 py-10 mt-2 mx-2 rounded-1 text-light`}
             >
@@ -138,8 +143,7 @@ export default function DemoUseReducer() {
             </button>
           ) : (
             <button
-            type="button"
-            
+              type="button"
               onClick={UpdateData}
               className={`btn btn-warning px-15 py-10 mt-2 mx-2 rounded-1 text-light`}
             >
@@ -149,7 +153,6 @@ export default function DemoUseReducer() {
         </form>
         <h3 style={{}}>Table of Data</h3>
         <table>
-  
           <tr className="mt-3 p-0">
             {state.datas.map((data, index) => (
               <td
