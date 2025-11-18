@@ -53,7 +53,7 @@ function reducer(state, action) {
         },
       };
     case "updateSearch":
-      return { ...state, search: action.value };
+      return { ...state, search: action.searchdata };
     default:
       return state;
   }
@@ -83,19 +83,20 @@ export default function DemoUseReducer() {
   };
   const filterData = state.datas.filter(
     (d) =>
-      d.id.toLoweCase().includes(state.search.toLoweCase()) ||
+      (d.id.toLoweCase().includes(state.search.toLoweCase()) ||
       d.name.toLoweCase().includes(state.search.toLoweCase()) ||
-      String(d.age).includes(state.search)
+      String(d.age).includes(state.search))
   );
   return (
     <>
       <h2>Demo useReducer</h2>
       <input
+      placeholder="Search by id , name , age"
         type="text"
         className="form-control"
         value={state.search}
         onChange={(e) =>
-          dispatch({ type: "updateSearch", value: e.target.value })
+          dispatch({ type: "updateSearch", searchdata: e.target.value })
         }
       />
       
@@ -168,6 +169,7 @@ export default function DemoUseReducer() {
         <h3 style={{}}>Table of Data</h3>
         <table>
           <tr className="mt-3 p-0">
+            {filterData.length === 0 && <p>No matching result</p>}
             {filterData.map((data, index) => (
               <td
                 key={index}
