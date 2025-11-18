@@ -90,6 +90,14 @@ export default function DemoUseReducer() {
   return (
     <>
       <h2>Demo useReducer</h2>
+      <input
+        type="text"
+        className="form-control"
+        value={state.search}
+        onChange={(e) =>
+          dispatch({ type: "updateSearch", value: e.target.value })
+        }
+      />
       
       <div className={`container col-md-12 mx-auto my-3`}>
         <form>
