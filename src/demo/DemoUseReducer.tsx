@@ -151,6 +151,7 @@ export default function DemoUseReducer() {
             </button>
           )}
         </form>
+        nfdjg
         <h3 style={{}}>Table of Data</h3>
         <table>
           <tr className="mt-3 p-0">
