@@ -81,7 +81,13 @@ export default function DemoUseReducer() {
   const handleEdit = (index) => {
     dispatch({ type: "EditData", index });
   };
+  const filterData = state.datas.filter((d) => 
+    d.id.toLoweCase().includes(state.search.toLoweCase())||
+    d.name.toLoweCase().includes(state.search.toLoweCase())||
 
+
+    String(d.age).includes(state.search)
+);
   return (
     <>
       <h2>Demo useReducer</h2>
@@ -155,7 +161,7 @@ export default function DemoUseReducer() {
         <h3 style={{}}>Table of Data</h3>
         <table>
           <tr className="mt-3 p-0">
-            {state.datas.map((data, index) => (
+            {filterData.map((data, index) => (
               <td
                 key={index}
                 className="d-flex justify-content-between align-items-center p-1 mb-1 border rounded-1"
