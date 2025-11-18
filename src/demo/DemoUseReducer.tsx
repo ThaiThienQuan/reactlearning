@@ -81,16 +81,16 @@ export default function DemoUseReducer() {
   const handleEdit = (index) => {
     dispatch({ type: "EditData", index });
   };
-  const filterData = state.datas.filter((d) => 
-    d.id.toLoweCase().includes(state.search.toLoweCase())||
-    d.name.toLoweCase().includes(state.search.toLoweCase())||
-
-
-    String(d.age).includes(state.search)
-);
+  const filterData = state.datas.filter(
+    (d) =>
+      d.id.toLoweCase().includes(state.search.toLoweCase()) ||
+      d.name.toLoweCase().includes(state.search.toLoweCase()) ||
+      String(d.age).includes(state.search)
+  );
   return (
     <>
       <h2>Demo useReducer</h2>
+      
       <div className={`container col-md-12 mx-auto my-3`}>
         <form>
           <div className="form-group">
@@ -157,7 +157,6 @@ export default function DemoUseReducer() {
             </button>
           )}
         </form>
-        nfdjg
         <h3 style={{}}>Table of Data</h3>
         <table>
           <tr className="mt-3 p-0">
