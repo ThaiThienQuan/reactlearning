@@ -36,11 +36,14 @@ function reducer(state, action) {
         };
       }
     case "EditData": {
-      const currentData = state.datas[action.index];
+const idx= action.index;
+
+if (idx==null||idx<0||idx>=state.datas.length) return state;
+
       return {
         ...state,
-        inputValue: { ...currentData },
-        editIndex: action.index,
+        inputValue: { ...state.datas[idx] },
+        editIndex:idx,
       };
     }
     case "updateInput":
