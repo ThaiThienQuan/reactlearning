@@ -24,6 +24,7 @@ function reducer(state, action) {
         datas: state.datas.filter((_, index) => index !== action.index),
       };
     case "updateData":
+      // nhớ update code chỗ này !!!!
       if (state.editIndex === null) return state;
       {
         const updateData = [...state.datas];
@@ -36,14 +37,14 @@ function reducer(state, action) {
         };
       }
     case "EditData": {
-const idx= action.index;
+      const idx = action.index;
 
-if (idx==null||idx<0||idx>=state.datas.length) return state;
+      if (idx == null || idx < 0 || idx >= state.datas.length) return state;
 
       return {
         ...state,
         inputValue: { ...state.datas[idx] },
-        editIndex:idx,
+        editIndex: idx,
       };
     }
     case "updateInput":
@@ -86,15 +87,15 @@ export default function DemoUseReducer() {
   };
   const filterData = state.datas.filter(
     (d) =>
-      (d.id.toLoweCase().includes(state.search.toLoweCase()) ||
+      d.id.toLoweCase().includes(state.search.toLoweCase()) ||
       d.name.toLoweCase().includes(state.search.toLoweCase()) ||
-      String(d.age).includes(state.search))
+      String(d.age).includes(state.search)
   );
   return (
     <>
       <h2>Demo useReducer</h2>
       <input
-      placeholder="Search by id , name , age"
+        placeholder="Search by id , name , age"
         type="text"
         className="form-control"
         value={state.search}
@@ -102,7 +103,7 @@ export default function DemoUseReducer() {
           dispatch({ type: "updateSearch", searchdata: e.target.value })
         }
       />
-      
+
       <div className={`container col-md-12 mx-auto my-3`}>
         <form>
           <div className="form-group">
