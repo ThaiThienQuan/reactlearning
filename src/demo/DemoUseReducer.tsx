@@ -25,6 +25,8 @@ function reducer(state, action) {
       };
     case "updateData":
       // nhớ update code chỗ này !!!!
+      const editIds=state.editIndex;
+      if (editIds == null || editIds < 0 || editIds >= state.datas.length) return state;
       if (state.editIndex === null) return state;
       {
         const updateData = [...state.datas];
@@ -40,7 +42,7 @@ function reducer(state, action) {
       const idx = action.index;
 
       if (idx == null || idx < 0 || idx >= state.datas.length) return state;
-
+      
       return {
         ...state,
         inputValue: { ...state.datas[idx] },
@@ -53,15 +55,15 @@ function reducer(state, action) {
         inputValue: {
           ...state.inputValue,
           [action.field]:
-            action.sctype == "checkbox" ? action.checked : action.value,
+          action.sctype == "checkbox" ? action.checked : action.value,
         },
       };
-    case "updateSearch":
-      return { ...state, search: action.searchdata };
-    default:
-      return state;
-  }
-}
+      case "updateSearch":
+        return { ...state, search: action.searchdata };
+        default:
+          return state;
+        }
+      }
 export default function DemoUseReducer() {
   const [state, dispatch] = useReducer(reducer, initialData);
   const handleChange = useCallback((e) => {
