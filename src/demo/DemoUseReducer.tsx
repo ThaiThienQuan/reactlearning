@@ -25,9 +25,9 @@ function reducer(state, action) {
       };
     case "updateData":
       // nhớ update code chỗ này !!!!
-      const editIds=state.editIndex;
-      if (editIds == null || editIds < 0 || editIds >= state.datas.length) return state;
-      if (state.editIndex === null) return state;
+      const editId = state.editIndex;
+      if (editId == null || editId < 0 || editId >= state.datas.length)
+        return state;
       {
         const updateData = [...state.datas];
         updateData[state.editIndex] = state.inputValue;
@@ -42,7 +42,7 @@ function reducer(state, action) {
       const idx = action.index;
 
       if (idx == null || idx < 0 || idx >= state.datas.length) return state;
-      
+
       return {
         ...state,
         inputValue: { ...state.datas[idx] },
@@ -55,15 +55,15 @@ function reducer(state, action) {
         inputValue: {
           ...state.inputValue,
           [action.field]:
-          action.sctype == "checkbox" ? action.checked : action.value,
+            action.sctype == "checkbox" ? action.checked : action.value,
         },
       };
-      case "updateSearch":
-        return { ...state, search: action.searchdata };
-        default:
-          return state;
-        }
-      }
+    case "updateSearch":
+      return { ...state, search: action.searchdata };
+    default:
+      return state;
+  }
+}
 export default function DemoUseReducer() {
   const [state, dispatch] = useReducer(reducer, initialData);
   const handleChange = useCallback((e) => {
@@ -87,12 +87,15 @@ export default function DemoUseReducer() {
   const handleEdit = (index) => {
     dispatch({ type: "EditData", index });
   };
+  const searchValue=state.search.trim().toLoweCase();
   const filterData = state.datas.filter(
-    (d) =>
-      d.id.toLoweCase().includes(state.search.toLoweCase()) ||
-      d.name.toLoweCase().includes(state.search.toLoweCase()) ||
-      String(d.age).includes(state.search)
-  );
+    (d) =>{
+      if (!searchValue) return true;
+      const id = String(d.id??"").toLowerCase();
+      const name = String(d.name??"").toLowerCase();
+      const age = String(d.age??"").toLowerCase();
+      return id.includes(searchValue)|| name.includes(searchValue)||age.includes(searchValue)||
+});
   return (
     <>
       <h2>Demo useReducer</h2>
