@@ -1,4 +1,5 @@
 import { useCallback, useReducer } from "react";
+
 const initialData = {
   datas: [],
   inputValue: {
@@ -8,8 +9,8 @@ const initialData = {
     checked: false,
   },
   editIndex: null,
-  search: "",
 };
+
 function reducer(state, action) {
   switch (action.type) {
     case "addData":
@@ -18,54 +19,49 @@ function reducer(state, action) {
         datas: [...state.datas, action.payload],
         inputValue: { id: "", name: "", age: 0, checked: false },
       };
+
     case "deleteData":
       return {
         ...state,
         datas: state.datas.filter((_, index) => index !== action.index),
       };
-    case "updateData":
-      // nhớ update code chỗ này !!!!
-      const editId = state.editIndex;
-      if (editId == null || editId < 0 || editId >= state.datas.length)
-        return state;
-      {
-        const updateData = [...state.datas];
-        updateData[state.editIndex] = state.inputValue;
-        return {
-          ...state,
-          datas: updateData,
-          inputValue: { id: "", name: "", age: 0, checked: false },
-          editIndex: null,
-        };
-      }
-    case "EditData": {
-      const idx = action.index;
 
-      if (idx == null || idx < 0 || idx >= state.datas.length) return state;
-
+    case "EditData":
+      const currentData = state.datas[action.index];
       return {
         ...state,
-        inputValue: { ...state.datas[idx] },
-        editIndex: idx,
+        inputValue: { ...currentData },
+        editIndex: action.index,
       };
-    }
+
+    case "updateData":
+      const updatedData = [...state.datas];
+      updatedData[state.editIndex] = state.inputValue;
+      return {
+        ...state,
+        datas: updatedData,
+        inputValue: { id: "", name: "", age: 0, checked: false },
+        editIndex: null,
+      };
+
     case "updateInput":
       return {
         ...state,
         inputValue: {
           ...state.inputValue,
           [action.field]:
-            action.sctype == "checkbox" ? action.checked : action.value,
+            action.sctype === "checkbox" ? action.checked : action.value,
         },
       };
-    case "updateSearch":
-      return { ...state, search: action.searchdata };
+
     default:
       return state;
   }
 }
+
 export default function DemoUseReducer() {
   const [state, dispatch] = useReducer(reducer, initialData);
+
   const handleChange = useCallback((e) => {
     dispatch({
       type: "updateInput",
@@ -75,132 +71,106 @@ export default function DemoUseReducer() {
       sctype: e.target.type,
     });
   }, []);
+
   const AddData = (e) => {
     e.preventDefault();
     if (state.inputValue.id && state.inputValue.name && state.inputValue.age) {
       dispatch({ type: "addData", payload: state.inputValue });
     }
   };
+
   const UpdateData = () => {
     dispatch({ type: "updateData" });
   };
+
   const handleEdit = (index) => {
     dispatch({ type: "EditData", index });
   };
-  const searchValue=state.search.trim().toLoweCase();
-  const filterData = state.datas.filter(
-    (d) =>{
-      if (!searchValue) return true;
-      const id = String(d.id??"").toLowerCase();
-      const name = String(d.name??"").toLowerCase();
-      const age = String(d.age??"").toLowerCase();
-      return id.includes(searchValue)|| name.includes(searchValue)||age.includes(searchValue)||
-});
+
   return (
     <>
       <h2>Demo useReducer</h2>
-      <input
-        placeholder="Search by id , name , age"
-        type="text"
-        className="form-control"
-        value={state.search}
-        onChange={(e) =>
-          dispatch({ type: "updateSearch", searchdata: e.target.value })
-        }
-      />
-
-      <div className={`container col-md-12 mx-auto my-3`}>
+      <div className="container col-md-12 mx-auto my-3">
         <form>
           <div className="form-group">
-            <label htmlFor="id">ID</label>
+            <label>ID</label>
             <input
-              id="id"
               type="text"
               name="id"
-              className="form-control  p-1 mr-1 mb-1 border rounded-1 border-success"
+              className="form-control"
               onChange={handleChange}
               value={state.inputValue.id}
-              placeholder="ID"
             />
           </div>
           <div className="form-group">
-            <label htmlFor="name">Name</label>
+            <label>Name</label>
             <input
-              id="name"
               name="name"
               type="text"
-              className="form-control  p-1 mr-1 mb-1 border rounded-1 border-success"
+              className="form-control"
               onChange={handleChange}
               value={state.inputValue.name}
-              placeholder="Name"
             />
           </div>
           <div className="form-group">
-            <label htmlFor="age">Age</label>
+            <label>Age</label>
             <input
-              id="age"
               name="age"
               type="number"
-              className="form-control  p-1 mr-1 mb-1 border rounded-1 border-success"
+              className="form-control"
               onChange={handleChange}
               value={state.inputValue.age}
             />
           </div>
           <div className="form-group">
             <input
-              id="checked"
               name="checked"
               type="checkbox"
-              className=" p-1 mr-1 mb-1 border rounded-1 border-success"
               onChange={handleChange}
               checked={state.inputValue.checked}
             />
-            <label htmlFor="checked">Remember?</label>
+            <label>Remember?</label>
           </div>
-          {state.editIndex == null ? (
-            <button
-              type="button"
-              onClick={AddData}
-              className={`btn btn-primary px-15 py-10 mt-2 mx-2 rounded-1 text-light`}
-            >
+
+          {state.editIndex === null ? (
+            <button type="button" onClick={AddData} className="btn btn-primary mx-2">
               Add
             </button>
           ) : (
-            <button
-              type="button"
-              onClick={UpdateData}
-              className={`btn btn-warning px-15 py-10 mt-2 mx-2 rounded-1 text-light`}
-            >
+            <button type="button" onClick={UpdateData} className="btn btn-warning mx-2">
               Update
             </button>
           )}
         </form>
-        <h3 style={{}}>Table of Data</h3>
+
+        <h3>Table of Data</h3>
         <table>
-          <tr className="mt-3 p-0">
-            {filterData.length === 0 && <p>No matching result</p>}
-            {filterData.map((data, index) => (
-              <td
-                key={index}
-                className="d-flex justify-content-between align-items-center p-1 mb-1 border rounded-1"
-              >
-                {data.id}-{data.name}-{data.age}-
-                {data.checked ? "Remembered" : "Not remember"}
-                <button
-                  className="btn btn-danger mx-2 btn-sm bg-danger"
-                  onClick={() => dispatch({ type: "deleteData", index })}
-                >
-                  Del
-                </button>
-                <button
-                  onClick={() => handleEdit(index)}
-                  className="btn btn-warning btn-sm bg-warning"
-                >
-                  Edit
-                </button>
-              </td>
+          <tbody>
+            {state.datas.map((data, index) => (
+              <tr key={index}>
+                <td>
+                  {data.id} - {data.name} - {data.age} -{" "}
+                  {data.checked ? "Remembered" : "Not remember"}
+                </td>
+                <td>
+                  <button
+                    className="btn btn-danger btn-sm mx-2"
+                    onClick={() =>
+                      dispatch({ type: "deleteData", index: index })
+                    }
+                  >
+                    Del
+                  </button>
+                  <button
+                    className="btn btn-warning btn-sm"
+                    onClick={() => handleEdit(index)}
+                  >
+                    Edit
+                  </button>
+                </td>
+              </tr>
             ))}
-          </tr>
+          </tbody>
         </table>
       </div>
     </>
