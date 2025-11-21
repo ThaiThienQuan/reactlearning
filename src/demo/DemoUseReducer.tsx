@@ -61,7 +61,12 @@ function reducer(state, action) {
 
 export default function DemoUseReducer() {
   const [state, dispatch] = useReducer(reducer, initialData);
+  useEffect(() => {
+    fetch("person.json")
+      .then((response) => response.json())
+      .then((person) => datas: id=id);
 
+  }, []);
   const handleChange = useCallback((e) => {
     dispatch({
       type: "updateInput",
@@ -133,11 +138,19 @@ export default function DemoUseReducer() {
           </div>
 
           {state.editIndex === null ? (
-            <button type="button" onClick={AddData} className="btn btn-primary mx-2">
+            <button
+              type="button"
+              onClick={AddData}
+              className="btn btn-primary mx-2"
+            >
               Add
             </button>
           ) : (
-            <button type="button" onClick={UpdateData} className="btn btn-warning mx-2">
+            <button
+              type="button"
+              onClick={UpdateData}
+              className="btn btn-warning mx-2"
+            >
               Update
             </button>
           )}
@@ -175,4 +188,7 @@ export default function DemoUseReducer() {
       </div>
     </>
   );
+}
+function useEffect(arg0: () => void, arg1: never[]) {
+  throw new Error("Function not implemented.");
 }
