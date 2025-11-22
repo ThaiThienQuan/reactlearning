@@ -53,7 +53,10 @@ function reducer(state, action) {
             action.sctype === "checkbox" ? action.checked : action.value,
         },
       };
+case "setdata":return{...state,
+  datas:action.payload
 
+}
     default:
       return state;
   }
@@ -67,7 +70,7 @@ export default function DemoUseReducer() {
       .then((person) =>initialData.datas[person]);
   }, []);
   const handleChange = useCallback((e) => {
-    
+
     dispatch({
       type: "updateInput",
       field: e.target.name,
