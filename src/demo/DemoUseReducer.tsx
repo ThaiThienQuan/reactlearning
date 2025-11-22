@@ -68,6 +68,7 @@ export default function DemoUseReducer() {
       .then((person) => dispatch({ type: "setdata", payload: person }))
       .catch((e) => console.log(e));
   }, []);
+  
   const handleChange = useCallback((e) => {
     dispatch({
       type: "updateInput",
