@@ -1,4 +1,4 @@
-import { useCallback, useReducer } from "react";
+import { useCallback, useEffect, useReducer } from "react";
 
 const initialData = {
   datas: [],
@@ -53,10 +53,8 @@ function reducer(state, action) {
             action.sctype === "checkbox" ? action.checked : action.value,
         },
       };
-case "setdata":return{...state,
-  datas:action.payload
-
-}
+    case "setdata":
+      return { ...state, datas: action.payload };
     default:
       return state;
   }
@@ -67,10 +65,10 @@ export default function DemoUseReducer() {
   useEffect(() => {
     fetch("person.json")
       .then((response) => response.json())
-      .then((person) =>initialData.datas[person]);
+      .then((person) => dispatch({ type: "setdata", payload: person }))
+      .catch((e) => console.log(e));
   }, []);
   const handleChange = useCallback((e) => {
-
     dispatch({
       type: "updateInput",
       field: e.target.name,
@@ -192,7 +190,4 @@ export default function DemoUseReducer() {
       </div>
     </>
   );
-}
-function useEffect(arg0: () => void, arg1: never[]) {
-  throw new Error("Function not implemented.");
 }
