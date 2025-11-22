@@ -1,0 +1,20 @@
+[
+    {
+    "id":"01",
+    "name":"Quân",
+    "age":"09",
+    "checked":false
+},
+    {
+    "id":"02",
+    "name":"Thiên",
+    "age":"09",
+    "checked":true
+},
+    {
+    "id":"03",
+    "name":"01",
+    "age":"09",
+    "checked":false
+}
+]

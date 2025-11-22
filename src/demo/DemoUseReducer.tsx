@@ -64,10 +64,10 @@ export default function DemoUseReducer() {
   useEffect(() => {
     fetch("person.json")
       .then((response) => response.json())
-      .then((person) => datas: id=id);
-
+      .then((person) =>initialData.datas[person]);
   }, []);
   const handleChange = useCallback((e) => {
+    
     dispatch({
       type: "updateInput",
       field: e.target.name,
@@ -162,7 +162,8 @@ export default function DemoUseReducer() {
             {state.datas.map((data, index) => (
               <tr key={index}>
                 <td>
-                  {data.id} - {data.name} - {data.age} -{" "}
+                  {data.id} - {data.name} -{" "}
+                  {1 <= data.age <= 9 ? "0" + data.age : data.age} -{" "}
                   {data.checked ? "Remembered" : "Not remember"}
                 </td>
                 <td>
