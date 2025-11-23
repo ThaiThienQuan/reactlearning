@@ -69,6 +69,7 @@ export default function DemoUseReducer() {
       .catch((e) => console.log(e));
   }, []);
   
+  
   const handleChange = useCallback((e) => {
     dispatch({
       type: "updateInput",
