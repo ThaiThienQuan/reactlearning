@@ -69,7 +69,6 @@ export default function DemoUseReducer() {
       .catch((e) => console.log(e));
   }, []);
   
-  
   const handleChange = useCallback((e) => {
     dispatch({
       type: "updateInput",
@@ -86,6 +85,7 @@ export default function DemoUseReducer() {
       dispatch({ type: "addData", payload: state.inputValue });
     }
   };
+
 
   const UpdateData = () => {
     dispatch({ type: "updateData" });
