@@ -34,6 +34,7 @@ function reducer(state, action) {
         editIndex: action.index,
       };
 
+      
     case "updateData":
       const updatedData = [...state.datas];
       updatedData[state.editIndex] = state.inputValue;
